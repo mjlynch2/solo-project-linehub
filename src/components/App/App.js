@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 
 import './App.css';
 import Station from '../StationPage/Station';
+import Menu from '../MenuPage/Menu';
 
 class App extends Component {
   componentDidMount () {
@@ -59,6 +60,10 @@ class App extends Component {
             <ProtectedRoute
               exact path="/stations"
               component={Station}
+            />
+            <ProtectedRoute
+              exact path="/menu"
+              component={Menu}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
