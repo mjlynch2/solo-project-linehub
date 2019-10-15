@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
+
 class Dish extends Component {
+
+    state = {
+        dishName: ''
+    }
 
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_INGREDIENT_FOR_DISH', id: this.props.match.params.id })
+        this.getDishName();
+    }
+
+    getDishName = () => {
+        const dish = this.props.menu.find(({ id }) => id == this.props.match.params.id);
+        if(dish != undefined){
+            this.setState({dishName: dish.dish_name})
+        }
     }
 
     render() {
-        const dish = this.props.menu.find(dish => dish.id == this.props.match.params.id);
+        // const dish = this.props.menu.find(({id}) => id == this.props.match.params.id);
         return (
             <div>
-                <h2>{dish.dish_name}</h2>
-                <pre>{JSON.stringify(dish)}</pre>
+                {/* {dish == undefined ? '' : <h2>{dish.dish_name}</h2>} */}
+                {/* <pre>{JSON.stringify(dish)}</pre> */}
+                <h3>{this.state.dishName}</h3>
                 {this.props.ingredient.map(ingredient => <div key={ingredient.id}>{ingredient.name}</div>)}
             </div>
         )
