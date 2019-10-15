@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 class Menu extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_MENU' })
+        this.props.dispatch({ type: 'GET_MENU_FOR_STATION', id: this.props.match.params.id })
     }
     render() {
         return (
             <div>
-                <h2>Stations:</h2>
-                <pre>{JSON.stringify(this.props.menu)}</pre>
-                {/* {this.props.station.map(station => <div key={station.id}>{station.station_name}</div>)} */}
+                <h2>Dishes:</h2>
+                {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
+                {this.props.menu.map(dish => <div key={dish.id}>{dish.dish_name}</div>)}
             </div>
         )
     }

@@ -15,6 +15,15 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    const query = `SELECT * FROM "menu" WHERE "station_id" = $1 ORDER BY "id"`;
+    pool.query(query, [req.params.id])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('Error selecting dishes:', error);
+        })
+});
 /**
  * POST route template
  */
