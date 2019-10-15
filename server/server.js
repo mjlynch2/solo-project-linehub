@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const stationRouter = require('./routes/station.router');
-const dishRouter = require('./routes/dish.router');
+const menuRouter = require('./routes/menu.router');
 const ingredientRouter = require('./routes/ingredient.router');
 const orderRouter = require('./routes/order.router');
 
@@ -30,7 +30,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/station', stationRouter);
-app.use('/api/dish', dishRouter);
+app.use('/api/menu', menuRouter);
 app.use('/api/ingredient', ingredientRouter);
 app.use('/api/order', orderRouter);
 

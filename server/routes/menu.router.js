@@ -6,7 +6,13 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-
+    const query = `SELECT * FROM "menu" ORDER BY "id"`;
+    pool.query(query)
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('Error selecting dishes:', error);
+        })
 });
 
 /**
