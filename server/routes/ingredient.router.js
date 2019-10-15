@@ -15,6 +15,21 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/:id', (req, res) => {
+    const query = `SELECT "ingredient".name FROM "ingredient"
+	JOIN "menu_ingredient"
+		ON "ingredient".id = "menu_ingredient".ingredient_id
+	JOIN "menu"
+		ON "menu_ingredient".menu_id = "menu".id
+	WHERE "menu_ingredient".menu_id = $1;`;
+    pool.query(query, [req.params.id])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('Error selecting ingredients from dish:', error);
+        })
+});
+
 /**
  * POST route template
  */

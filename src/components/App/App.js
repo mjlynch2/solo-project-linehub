@@ -21,6 +21,7 @@ import './App.css';
 import Station from '../StationPage/Station';
 import Menu from '../MenuPage/Menu';
 import AppBar from '../MaterialUI/AppBar';
+import Dish from '../DishPage/Dish';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -64,6 +65,10 @@ class App extends Component {
             <ProtectedRoute
               exact path="/menu/:id"
               component={Menu}
+            />
+            <ProtectedRoute
+              exact path="/dish/:id"
+              component={Dish}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
