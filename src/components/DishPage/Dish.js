@@ -8,10 +8,11 @@ class Dish extends Component {
     }
 
     render() {
+        const dish = this.props.menu.find(dish => dish.id == this.props.match.params.id);
         return (
             <div>
-                <h2>NAME:</h2>
-                {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
+                <h2>{dish.dish_name}</h2>
+                <pre>{JSON.stringify(dish)}</pre>
                 {this.props.ingredient.map(ingredient => <div key={ingredient.id}>{ingredient.name}</div>)}
             </div>
         )
@@ -19,7 +20,8 @@ class Dish extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-    ingredient: reduxState.ingredient
+    ingredient: reduxState.ingredient,
+    menu: reduxState.menu
 })
 
 export default connect(mapStateToProps)(Dish)
