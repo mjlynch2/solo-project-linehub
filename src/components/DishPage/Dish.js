@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 class Dish extends Component {
 
     state = {
-        dishName: ''
+        dishName: '',
+        isChecked: false
     }
 
     componentDidMount = () => {
@@ -21,18 +22,23 @@ class Dish extends Component {
         }
     }
 
-    addToPrepList = (ingredient) => {
-        this.props.dispatch({ type: 'ADD_TO_PREPLIST', payload: ingredient})
+    addToPrepList = (ingredient, event) => {
+        let actionType = 'ADD_TO_PREPLIST';
+        if(!event.target.checked){
+            actionType = 'REMOVE_FROM_PREPLIST'
+        }
+        this.props.dispatch({type: actionType, payload: ingredient})
     }
 
     render() {
-        // const dish = this.props.menu.find(({id}) => id == this.props.match.params.id);
         return (
             <div>
-                {/* {dish == undefined ? '' : <h2>{dish.dish_name}</h2>} */}
-                {/* <pre>{JSON.stringify(dish)}</pre> */}
                 <h3>{this.state.dishName}</h3>
-                {this.props.ingredient.map(ingredient => <div key={ingredient.id} onClick={() => {this.addToPrepList(ingredient.name)}}>{ingredient.name}</div>)}
+                {this.props.ingredient.map(ingredient => 
+                    <div key={ingredient.id}>
+                        <input type="checkbox" onClick={(event) => { this.addToPrepList(ingredient.name, event) }}></input>
+                        {ingredient.name}
+                    </div>)}
             </div>
         )
     }

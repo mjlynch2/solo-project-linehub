@@ -7,7 +7,10 @@ class PrepList extends Component {
         return (
             <div>
                 Gather and Prep: 
-            {this.props.prepList.length == 0 ? <p>Nothing to prep</p> : <ul>{this.props.prepList.map((ingredient, index) => <li key={index}>{ingredient}</li>)}</ul>}
+                {this.props.prepList.length == 0 ? 
+                    <p>Nothing to prep</p> : 
+                    <ul>{this.props.prepList.map((ingredient, index) => <li key={index}>{ingredient}</li>)}</ul>
+                }
             </div>
         )
     }
