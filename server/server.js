@@ -14,6 +14,7 @@ const stationRouter = require('./routes/station.router');
 const menuRouter = require('./routes/menu.router');
 const ingredientRouter = require('./routes/ingredient.router');
 const orderRouter = require('./routes/order.router');
+const preplistRouter = require ('./routes/preplist.router');
 
 
 // Body parser middleware
@@ -33,6 +34,7 @@ app.use('/api/station', stationRouter);
 app.use('/api/menu', menuRouter);
 app.use('/api/ingredient', ingredientRouter);
 app.use('/api/order', orderRouter);
+app.use('/api/preplist', preplistRouter);
 
 // Serve static files
 app.use(express.static('build'));

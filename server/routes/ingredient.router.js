@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    const query = `SELECT "ingredient".name FROM "ingredient"
+    const query = `SELECT "ingredient".name, "ingredient".id FROM "ingredient"
 	JOIN "menu_ingredient"
 		ON "ingredient".id = "menu_ingredient".ingredient_id
 	JOIN "menu"
