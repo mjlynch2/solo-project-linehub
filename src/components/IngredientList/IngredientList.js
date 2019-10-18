@@ -14,9 +14,7 @@ class IngredientList extends Component {
     }
 
     isOnPreplist = (id) => {
-        const itemToFind = this.props.preplist.filter(item => item.ingredient_id === id);
-        console.log('ITEM', itemToFind);
-        
+        const itemToFind = this.props.preplist.filter(item => item.ingredient_id === id);        
         if(itemToFind.length > 0) {
             return true;
         } else {

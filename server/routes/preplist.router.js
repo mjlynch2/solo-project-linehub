@@ -30,4 +30,13 @@ router.post('/', (req, res) => {
         })
 });
 
+router.delete('/:id', (req, res) => {
+    const query = `DELETE FROM "preplist" WHERE "user_id" = $1 AND "date" = current_date AND "ingredient_id" = $2;`;
+    pool.query(query, [req.params.id, req.body.ingredient_id])
+        .then(() => res.sendStatus(200))
+        .catch((error) => {
+            console.log('Error adding to preplist:', error);
+        })
+})
+
 module.exports = router;
