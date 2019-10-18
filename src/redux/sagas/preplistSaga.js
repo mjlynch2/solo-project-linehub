@@ -22,7 +22,7 @@ function* addToPreplist(action) {
 
 function* removeFromPreplist(action) {
     try {
-        yield axios.delete(`/api/preplist`, action.payload);
+        yield axios.delete(`api/preplist/${action.payload.user_id}`, {data: action.payload});
         yield getPreplist(action);
     } catch (error) {
         console.log('Error deleteing item from preplist:', error);
