@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PrepListItem from '../PrepListItem/PrepListItem';
 
 class PrepList extends Component {
 
@@ -13,9 +14,8 @@ class PrepList extends Component {
                 Gather and Prep:
                 {this.props.preplist.length == 0 ? 
                     <p>Nothing to prep</p> : 
-                    <ul>{this.props.preplist.map((item) => <li key={item.id}>{item.name}</li>)}</ul>
+                    <>{this.props.preplist.map((item) => <div key={item.id}><PrepListItem item={item} /></div>)}</>
                 }
-                {JSON.stringify(this.props.preplist)}
             </div>
         )
     }
