@@ -1,9 +1,9 @@
-const prepListReducer = (state = [], action) => {
+const preplistReducer = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TO_PREPLIST':         
-            return action.payload
-        case 'REMOVE_FROM_PREPLIST':            
-            return action.payload;
+        // case 'ADD_TO_PREPLIST':         
+        //     return action.payload
+        // case 'REMOVE_FROM_PREPLIST':            
+        //     return action.payload;
         case 'SET_PREPLIST':
             return action.payload;
         default:
@@ -12,4 +12,4 @@ const prepListReducer = (state = [], action) => {
 };
 
 
-export default prepListReducer;
+export default preplistReducer;

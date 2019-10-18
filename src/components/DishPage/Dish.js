@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IngredientList from '../IngredientList/IngredientList';
+import { jsxAttribute } from '@babel/types';
 
 
 
@@ -11,7 +12,8 @@ class Dish extends Component {
     }
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_INGREDIENT_FOR_DISH', id: this.props.match.params.id })
+        this.props.dispatch({ type: 'GET_PREPLIST', payload: { user_id: this.props.user.id } });
+        this.props.dispatch({ type: 'GET_INGREDIENT_FOR_DISH', id: this.props.match.params.id });
         this.getDishName();
     }
 
@@ -32,7 +34,7 @@ class Dish extends Component {
             <div>
                 ingredients: {JSON.stringify(this.props.ingredient)}
                 <br/>
-                prep list: {JSON.stringify(this.props.prepList)}
+                prep list: {JSON.stringify(this.props.preplist)}
                 <h3>{this.state.dishName}</h3>
                 {this.props.ingredient.map((ingredient, index) => 
                     <div key={index}>
@@ -46,7 +48,8 @@ class Dish extends Component {
 const mapStateToProps = reduxState => ({
     ingredient: reduxState.ingredient,
     menu: reduxState.menu,
-    prepList: reduxState.prepList
+    preplist: reduxState.preplist,
+    user: reduxState.user
 })
 
 export default connect(mapStateToProps)(Dish)

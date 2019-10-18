@@ -34,7 +34,7 @@ function* updatePreplist(action) {
         yield axios.put(`/api/preplist`, action.payload);
         yield getPreplist(action);
     } catch (error) {
-        console.log('Error deleteing item from preplist:', error);
+        console.log('Error updating preplist:', error);
     }
 }
 

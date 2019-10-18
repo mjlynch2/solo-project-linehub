@@ -5,7 +5,7 @@ import user from './userReducer';
 import station from './stationReducer';
 import menu from './menuReducer';
 import ingredient from './ingredientReducer';
-import prepList from './prepListReducer';
+import preplist from './prepListReducer';
 
 
 // rootReducer is the primary reducer for our entire project
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   station, // will have a station name and id
   menu, // will have dish names and ids
   ingredient,
-  prepList
+  preplist
 });
 
 export default rootReducer;
