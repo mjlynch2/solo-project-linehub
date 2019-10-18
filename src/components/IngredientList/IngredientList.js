@@ -14,18 +14,14 @@ class IngredientList extends Component {
     }
 
     isOnPreplist = (id) => {
-        this.props.preplist.find(item => {
-            if(item.ingredient_id === id){
-                console.log('ITEM:', item)
-                return true;
-            }
-        });
-
-        // if(itemToFind.length > 0) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
+        const itemToFind = this.props.preplist.filter(item => item.ingredient_id === id);
+        console.log('ITEM', itemToFind);
+        
+        if(itemToFind.length > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     render(){
