@@ -13,7 +13,7 @@ function* getStations() {
 
 function* updateStation(action) {
     try {
-        yield axios.put(`/api/station/${action.id}`, action.payload);
+        yield axios.put(`/api/station/${action.id}`, {station_name: action.payload});
         yield getStations();
     } catch (error) {
         console.log('Error updating station:', error);

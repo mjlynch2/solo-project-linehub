@@ -17,17 +17,19 @@ class StationAdmin extends Component {
     }
 
     handleDelete = (id, name) => {
-        confirm(`Are you sure you want to delete the station ${name}? This action cannot be undone.` 
-                ? this.props.dispatch({type: 'DELETE_STATION', id: id}) : false)
+        if(window.confirm(`Are you sure you want to delete the station ${name}? This action cannot be undone.`))
+        {
+            this.props.dispatch({ type: 'DELETE_STATION', id: id })
+        }
     }
 
-    handleEdit = () => {
-        this.setState({isEditable: !this.state.isEditable})
+    handleEdit = (name) => {
+        this.setState({isEditable: true, stationName: name})
     }
 
     handleSave = (id) => {
         this.props.dispatch({type: 'UPDATE_STATION', payload: this.state.stationName, id: id});
-        this.setState({stationName: ''});
+        this.setState({isEditable: false});
     }
 
     handleChange = (event) => {
@@ -38,21 +40,19 @@ class StationAdmin extends Component {
             <div>
                 {this.props.station.map(station => 
                     <div 
-                        key={station.id} 
-                        onClick={() => this.handleClick(station.id)}
-                    >
+                        key={station.id}>
                         {this.state.isEditable ? 
                             <div>
                                 <input type="text" defaultValue={station.station_name} onChange={event => this.handleChange(event)} /> 
-                                <button className="saveChanges" onClick={event => this.handleSave(station.id)}>Save</button>
+                                <button className="saveChanges" onClick={() => this.handleSave(station.id)}>Save</button>
                             </div>
                             : 
                             <div>
                                 {station.station_name} 
-                                <button className="editButton" onClick={this.handleEdit}>Edit</button>
+                                <button className="editButton" onClick={() => this.handleEdit(station.station_name)}>Edit</button>
                             </div>
                         }
-                        <button className="deleteButton" onClick={event => this.handleDelete(station.id, station.station_name)}>Delete Station</button>
+                        <button className="deleteButton" onClick={() => this.handleDelete(station.id, station.station_name)}>Delete Station</button>
                     </div>)}
 
             </div>
