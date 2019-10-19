@@ -11,8 +11,28 @@ function* getStations() {
     }
 }
 
+function* updateStation(action) {
+    try {
+        yield axios.put(`/api/station/${action.id}`, action.payload);
+        yield getStations();
+    } catch (error) {
+        console.log('Error updating station:', error);
+    }
+}
+
+function* deleteStation(action) {
+    try {
+        yield axios.delete(`/api/station/${action.id}`);
+        yield getStations();
+    } catch (error) {
+        console.log('Error deleting station:', error);
+    }
+}
+
 function* stationSaga() {
     yield takeLatest('GET_STATIONS', getStations);
+    yield takeLatest('UPDATE_STATION', updateStation);
+    yield takeLatest('DELETE_STATION', deleteStation);
 }
 
 export default stationSaga;

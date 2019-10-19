@@ -52,7 +52,6 @@ class StationAdmin extends Component {
                                 <button className="editButton" onClick={this.handleEdit}>Edit</button>
                             </div>
                         }
-                        
                         <button className="deleteButton" onClick={event => this.handleDelete(station.id, station.station_name)}>Delete Station</button>
                     </div>)}
 

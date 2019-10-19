@@ -22,6 +22,7 @@ import Station from '../StationPage/Station';
 import Menu from '../MenuPage/Menu';
 import AppBar from '../MaterialUI/AppBar';
 import Dish from '../DishPage/Dish';
+import StationAdmin from '../StationAdmin/StationAdmin';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -63,8 +64,8 @@ class App extends Component {
               component={Station}
             />
             <ProtectedRoute
-              exact path="/menu/:id"
-              component={Menu}
+              exact path="/admin/stations"
+              component={StationAdmin}
             />
             <ProtectedRoute
               exact path="/dish/:id"
