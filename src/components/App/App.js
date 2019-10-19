@@ -68,6 +68,10 @@ class App extends Component {
               component={StationAdmin}
             />
             <ProtectedRoute
+              exact path="/menu/:id"
+              component={Menu}
+            />
+            <ProtectedRoute
               exact path="/dish/:id"
               component={Dish}
             />
