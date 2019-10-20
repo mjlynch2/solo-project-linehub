@@ -20,8 +20,11 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
     const query = `INSERT INTO "station" ("station_name") VALUES ($1);`;
-    console.log(req.body);
-    res.sendStatus(201); 
+    pool.query(query, [req.body.station_name])
+        .then(() => {res.sendStatus(201)})
+        .catch((error) => {
+            console.log('Error adding station:', error);
+        })
 });
 
 router.delete('/:id', (req, res) => {

@@ -20,9 +20,19 @@ function* updateStation(action) {
     }
 }
 
+function* addStation(action) {
+    try {
+        yield axios.post(`/api/station`, { station_name: action.payload });
+        yield getStations();
+    } catch (error) {
+        console.log('Error adding station:', error);
+    }
+}
+
 function* stationSaga() {
     yield takeLatest('GET_STATIONS', getStations);
     yield takeLatest('UPDATE_STATION', updateStation);
+    yield takeLatest('ADD_STATION', addStation);
 }
 
 export default stationSaga;

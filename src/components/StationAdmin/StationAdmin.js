@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationAdminItem from '../StationAdminItem/StationAdminItem';
+import { thisExpression } from '@babel/types';
 
 class StationAdmin extends Component {
 
+    state = {
+        newStationName: '',
+        showInput: false
+    }
+
     componentDidMount = () => {
         this.props.dispatch({ type: 'GET_STATIONS' })
+    }
+
+    handleClick = () => {
+        this.setState({ showInput: true })
+    }
+
+    handleChange = (event) => {
+        this.setState({ newStationName: event.target.value });
+    }
+
+    handleSave = () => {
+        this.props.dispatch({ type: 'ADD_STATION', payload: this.state.newStationName});
+        this.setState({ showInput: false, newStationName: ''})
     }
 
     render() {
@@ -15,7 +34,14 @@ class StationAdmin extends Component {
                     <div key={station.id}>
                         <StationAdminItem name={station.station_name} id={station.id} />
                     </div>)}
-
+                {this.state.showInput ? 
+                    <div>
+                        <input type="text" onChange={event=>this.handleChange(event)}/>
+                        <button onClick={this.handleSave}>Save</button>
+                    </div>
+                    :
+                    <></>}
+                <button onClick={this.handleClick}>Add new station</button>
             </div>
         )
     }
