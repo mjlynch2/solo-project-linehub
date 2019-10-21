@@ -28,8 +28,25 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-
+    const query = `INSERT INTO "menu" ("dish_name") VALUES ($1);`
+    pool.query(query, [req.body.dish_name])
+        .then(() => { res.sendStatus(201); })
+        .catch((error) => {
+            console.log('Error adding new menu:', error);
+        })
 });
+
+router.post('/menu-ingredient/:id', (req, res, next) => {
+    for (item of req.body) {
+        let query = `INSERT INTO "menu_ingredient" ("ingredient_id", "menu_id") VALUES ($1, $2);`;
+        pool.query(query, [item.id, req.params.id])
+            .then(() => next())
+            .catch((error) => {
+                console.log('Error adding new menu-ingredient:', error);
+            })
+    }
+    res.sendStatus( 201 );
+})
 
 router.put('/:id', (req, res) => {
     const query = `UPDATE "menu" SET "dish_name" = $1 WHERE "id" = $2;`;
@@ -41,7 +58,7 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-    const query = `DELETE FROM "menu" WHERE "id" = $1;`;
+    const query = `DELETE FROM "menu" WHERE "menu".id = $1;`;
     pool.query(query, [req.params.id])
         .then(() => { res.sendStatus(200); })
         .catch((error) => {

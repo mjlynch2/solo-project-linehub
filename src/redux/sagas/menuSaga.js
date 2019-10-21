@@ -20,6 +20,17 @@ function* getMenuForStation(action) {
     }
 }
 
+function* addMenuItem(action) {
+    try {
+        yield axios.post(`/api/menu`, {dish_name: action.name});
+        const response = yield axios.get('/api/menu')
+        const id = response.data[response.data.length-1].id;
+        yield axios.post(`/api/menu/menu-ingredient/${id}`, action.payload)
+    } catch (error) {
+        console.log('Error adding menu item:', error)
+    }
+}
+
 function* updateMenu(action) {
     try {
         yield axios.put(`/api/menu/${action.id}`, { dish_name: action.payload });
@@ -43,6 +54,7 @@ function* menuSaga() {
     yield takeLatest('GET_MENU_FOR_STATION', getMenuForStation);
     yield takeLatest('UPDATE_MENU', updateMenu);
     yield takeLatest('DELETE_MENU', deleteMenu);
+    yield takeLatest('ADD_MENU_ITEM', addMenuItem);
 }
 
 export default menuSaga;

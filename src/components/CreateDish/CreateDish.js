@@ -33,6 +33,10 @@ class CreateDish extends Component {
         }, 1000);
     };
 
+    createNewDish = () => {
+        this.props.dispatch({type: 'ADD_MENU_ITEM', name: 'test2', payload: this.state.ingredients});
+    }
+
     handleChange = (value, actionMeta) => {
         this.setState({ ingredients: [...this.state.ingredients, value] })
     };
@@ -56,6 +60,7 @@ class CreateDish extends Component {
                         onChange={this.handleChange} />
                 </div>
                 {this.state.ingredients == null ? '' : <ul>{this.state.ingredients.map((item, index) => <li key={index}>{item.value}</li>)}</ul>}
+                <button onClick={this.createNewDish}>Create Dish!</button>
             </div>
         )
     }
@@ -63,7 +68,7 @@ class CreateDish extends Component {
 
 const mapStateToProps = reduxState => ({
     ingredient: reduxState.ingredient,
-    options: reduxState.ingredient.map(({name}) => {return {value: name, label: name}})
+    options: reduxState.ingredient.map(item => {return {value: item.name, label: item.name, id: item.id}})
 })
 
 export default connect(mapStateToProps)(CreateDish);
