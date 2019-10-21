@@ -21,6 +21,14 @@ class MenuAdminItem extends Component {
         this.setState({ dishName: event.target.value });
     }
 
+    handleDelete = (id) => {
+        if(window.confirm(`Are you sure you want to permanently delete this dish? This action cannot be undone.`)){
+            this.props.dispatch({ type: 'DELETE_MENU', id: id});
+        } else {
+            return false;
+        };
+    }
+
     render() {
         return (
             <div>
@@ -35,6 +43,7 @@ class MenuAdminItem extends Component {
                         <button className="editButton" onClick={() => this.handleEdit(this.props.name)}>Edit</button>
                     </div>
                 }
+                <button onClick={() => this.handleDelete(this.props.id)}>Delete</button>
             </div>
         )
     }

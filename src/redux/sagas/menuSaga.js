@@ -29,11 +29,20 @@ function* updateMenu(action) {
     }
 }
 
+function* deleteMenu(action) {
+    try {
+        yield axios.delete(`/api/menu/${action.id}`);
+        yield getMenu();
+    } catch (error) {
+        console.log('Error deleting menu item:', error)
+    }
+}
+
 function* menuSaga() {
     yield takeLatest('GET_MENU', getMenu);
     yield takeLatest('GET_MENU_FOR_STATION', getMenuForStation);
     yield takeLatest('UPDATE_MENU', updateMenu);
-
+    yield takeLatest('DELETE_MENU', deleteMenu);
 }
 
 export default menuSaga;
