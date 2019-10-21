@@ -34,12 +34,17 @@ class CreateDish extends Component {
     };
 
     createNewDish = () => {
-        this.props.dispatch({type: 'ADD_MENU_ITEM', name: 'test2', payload: this.state.ingredients});
+        this.props.dispatch({type: 'ADD_MENU_ITEM', name: this.state.dishName, payload: this.state.ingredients});
+        this.setState({dishName: ''})
     }
 
     handleChange = (value, actionMeta) => {
         this.setState({ ingredients: [...this.state.ingredients, value] })
     };
+
+    handleNameChange = (event) => {
+        this.setState({dishName: event.target.value});
+    }
 
     render(){
 
@@ -48,6 +53,7 @@ class CreateDish extends Component {
                 <TextField
                     label="Dish name"
                     placeholder="e.g. Fusilli with basil pesto"
+                    onChange={(event) => this.handleNameChange(event)}
                     margin="normal"
                     fullWidth
                 />
