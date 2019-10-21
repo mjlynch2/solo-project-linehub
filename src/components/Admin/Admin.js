@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Admin extends Component {
@@ -9,6 +8,10 @@ class Admin extends Component {
             <div>
                 <Link to="/admin/stations">
                     Stations
+                </Link>
+                <br />
+                <Link to="/admin/menu">
+                    Menu
                 </Link>
                 <br/>
                 <Link to="/admin/orders">
