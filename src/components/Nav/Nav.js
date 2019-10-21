@@ -22,10 +22,7 @@ const Nav = (props) => (
           <Link className="nav-link" to="/stations">
             Stations
           </Link>
-          <Link className="nav-link" to="/menu">
-            Menu
-          </Link>
-          <Link className="nav-link" to="/admin/stations">
+          <Link className="nav-link" to="/admin">
             Admin
           </Link>
           <Link className="nav-link" to="/info">

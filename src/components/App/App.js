@@ -23,6 +23,8 @@ import Menu from '../MenuPage/Menu';
 import AppBar from '../MaterialUI/AppBar';
 import Dish from '../DishPage/Dish';
 import StationAdmin from '../StationAdmin/StationAdmin';
+import Admin from '../Admin/Admin';
+import Orders from '../Orders/Orders';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -60,12 +62,20 @@ class App extends Component {
               component={InfoPage}
             />
             <ProtectedRoute
-              exact path="/stations"
-              component={Station}
+              exact path="/admin"
+              component={Admin}
             />
             <ProtectedRoute
               exact path="/admin/stations"
               component={StationAdmin}
+            />
+            <ProtectedRoute
+              exact path="/admin/orders"
+              component={Orders}
+            />
+            <ProtectedRoute
+              exact path="/stations"
+              component={Station}
             />
             <ProtectedRoute
               exact path="/menu/:id"
