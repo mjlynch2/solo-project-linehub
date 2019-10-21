@@ -26,6 +26,7 @@ import StationAdmin from '../StationAdmin/StationAdmin';
 import Admin from '../Admin/Admin';
 import Orders from '../Orders/Orders';
 import MenuAdmin from '../MenuAdmin/MenuAdmin';
+import CreateDish from '../CreateDish/CreateDish';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -73,6 +74,10 @@ class App extends Component {
             <ProtectedRoute
               exact path="/admin/menu"
               component={MenuAdmin}
+            />
+            <ProtectedRoute
+              exact path="/admin/menu/createdish"
+              component={CreateDish}
             />
             <ProtectedRoute
               exact path="/admin/orders"

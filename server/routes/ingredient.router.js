@@ -34,7 +34,12 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-
+    const query = `INSERT INTO "ingredient" ("name") VALUES ($1);`;
+    pool.query(query, [req.body.name])
+        .then(() => { res.sendStatus(201) })
+        .catch((error) => {
+            console.log('Error adding ingredient:', error);
+        })
 });
 
 module.exports = router;

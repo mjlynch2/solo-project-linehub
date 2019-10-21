@@ -20,9 +20,19 @@ function* getIngredientForDish(action) {
     }
 }
 
+function* addIngredient(action) {
+    try {
+        yield axios.post(`/api/ingredient`, {name: action.payload});
+        yield getIngredient();
+    } catch (error) {
+        
+    }
+}
+
 function* ingredientSaga() {
     yield takeLatest('GET_INGREDIENT', getIngredient);
     yield takeLatest('GET_INGREDIENT_FOR_DISH', getIngredientForDish);
+    yield takeLatest('ADD_INGREDIENT', addIngredient);
 }
 
 export default ingredientSaga;
