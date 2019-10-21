@@ -20,8 +20,9 @@ class CreateDish extends Component {
         this.props.dispatch({type: 'GET_STATIONS'});
     }
 
-    createNewIngredient = (name) => {
-        return ({label: name, value: name})
+    createNewIngredient = (ingredientName) => {
+        const ingredient = this.props.ingredient.find(({name}) => name === ingredientName)
+        return ({label: ingredient.name, value: ingredient.name, id: ingredient.id})
     }
 
     handleCreate = (newIngredientName) => {
