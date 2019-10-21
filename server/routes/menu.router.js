@@ -28,8 +28,8 @@ router.get('/:id', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    const query = `INSERT INTO "menu" ("dish_name") VALUES ($1);`
-    pool.query(query, [req.body.dish_name])
+    const query = `INSERT INTO "menu" ("dish_name", "station_id") VALUES ($1, $2);`
+    pool.query(query, [req.body.dish_name, req.body.station_id])
         .then(() => { res.sendStatus(201); })
         .catch((error) => {
             console.log('Error adding new menu:', error);

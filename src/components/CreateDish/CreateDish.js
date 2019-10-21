@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Creatable from 'react-select/creatable';
+import Select from 'react-select';
 import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import { TextField } from '@material-ui/core';
@@ -11,10 +12,12 @@ class CreateDish extends Component {
         dishName: '',
         ingredients: [],
         isLoading: false,
+        station: ''
     }
 
     componentDidMount(){
         this.props.dispatch({ type: 'GET_INGREDIENT'});
+        this.props.dispatch({type: 'GET_STATIONS'});
     }
 
     createNewIngredient = (name) => {
@@ -34,7 +37,7 @@ class CreateDish extends Component {
     };
 
     createNewDish = () => {
-        this.props.dispatch({type: 'ADD_MENU_ITEM', name: this.state.dishName, payload: this.state.ingredients});
+        this.props.dispatch({type: 'ADD_MENU_ITEM', name: this.state.dishName, station: this.state.station, payload: this.state.ingredients});
         this.setState({dishName: ''})
     }
 
@@ -46,10 +49,17 @@ class CreateDish extends Component {
         this.setState({dishName: event.target.value});
     }
 
+    handleStationSelect = (value) => {
+        this.setState({ station: value})
+        console.log(value);
+        
+    }
+
     render(){
 
         return(
             <div className="createDishDiv">
+
                 <TextField
                     label="Dish name"
                     placeholder="e.g. Fusilli with basil pesto"
@@ -58,6 +68,14 @@ class CreateDish extends Component {
                     fullWidth
                 />
                 <Divider variant="middle"/>
+                <div className="labelDiv">Set Station...</div>
+                <Select 
+                    options={this.props.station}
+                    onChange={this.handleStationSelect}
+                />
+                <br/>
+                <Divider variant="middle" />
+                <br/>
                 <div className="labelDiv">Add ingredient...</div>
                 <div className="selectDiv">
                     <Creatable
@@ -74,7 +92,8 @@ class CreateDish extends Component {
 
 const mapStateToProps = reduxState => ({
     ingredient: reduxState.ingredient,
-    options: reduxState.ingredient.map(item => {return {value: item.name, label: item.name, id: item.id}})
+    options: reduxState.ingredient.map(item => {return {value: item.name, label: item.name, id: item.id}}),
+    station: reduxState.station.map(item => {return {value: item.station_name, label: item.station_name, id: item.id}})
 })
 
 export default connect(mapStateToProps)(CreateDish);

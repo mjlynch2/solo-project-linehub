@@ -22,7 +22,7 @@ function* getMenuForStation(action) {
 
 function* addMenuItem(action) {
     try {
-        yield axios.post(`/api/menu`, {dish_name: action.name});
+        yield axios.post(`/api/menu`, {dish_name: action.name, station_id: action.station.id});
         const response = yield axios.get('/api/menu')
         const id = response.data[response.data.length-1].id;
         yield axios.post(`/api/menu/menu-ingredient/${id}`, action.payload)
