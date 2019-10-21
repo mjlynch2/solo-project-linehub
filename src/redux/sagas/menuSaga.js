@@ -17,12 +17,23 @@ function* getMenuForStation(action) {
         yield put({type: 'SET_MENU_FOR_STATION', payload: response.data})
     } catch (error) {
         console.log('Error getting menu for station:', error);
+    }
 }
+
+function* updateMenu(action) {
+    try {
+        yield axios.put(`/api/menu/${action.id}`, { dish_name: action.payload });
+        yield getMenu();
+    } catch (error) {
+        console.log('Error updating menu:', error)
+    }
 }
 
 function* menuSaga() {
     yield takeLatest('GET_MENU', getMenu);
     yield takeLatest('GET_MENU_FOR_STATION', getMenuForStation);
+    yield takeLatest('UPDATE_MENU', updateMenu);
+
 }
 
 export default menuSaga;

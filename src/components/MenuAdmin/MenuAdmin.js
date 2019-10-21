@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CreateDish from '../CreateDish/CreateDish';
+import MenuAdminItem from '../MenuAdminItem/MenuAdminItem';
 
 class MenuAdmin extends Component {
+
     componentDidMount() {
         this.props.dispatch({ type: 'GET_MENU' })
     }
@@ -10,8 +11,10 @@ class MenuAdmin extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.props.menu)}
-                <CreateDish />
+                {this.props.menu.map(dish =>
+                    <div key={dish.id}>
+                        <MenuAdminItem name={dish.dish_name} id={dish.id} />
+                    </div>)}
             </div>
         )
     }

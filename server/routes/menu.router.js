@@ -31,4 +31,13 @@ router.post('/', (req, res) => {
 
 });
 
+router.put('/:id', (req, res) => {
+    const query = `UPDATE "menu" SET "dish_name" = $1 WHERE "id" = $2;`;
+    pool.query(query, [req.body.dish_name, req.params.id])
+        .then(() => { res.sendStatus(200); })
+        .catch((error) => {
+            console.log('Error updating menu:', error);
+        })
+})
+
 module.exports = router;
