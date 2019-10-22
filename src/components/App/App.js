@@ -15,7 +15,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import './App.css';
 import Station from '../StationPage/Station';
 import Menu from '../MenuPage/Menu';
-import AppBar from '../MaterialUI/AppBar';
+import AppBar from '../MaterialUI/TopNav';
 import Dish from '../DishPage/Dish';
 import StationAdmin from '../StationAdmin/StationAdmin';
 import Admin from '../Admin/Admin';
@@ -24,6 +24,7 @@ import MenuAdmin from '../MenuAdmin/MenuAdmin';
 import CreateDish from '../CreateDish/CreateDish';
 import BottomNavBar from '../MaterialUI/BottomNavBar';
 import PrepList from '../PrepList/PrepList';
+import TopNav from '../MaterialUI/TopNav';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -33,7 +34,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          <TopNav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -69,8 +70,8 @@ class App extends Component {
               component={StationAdmin}
             />
             <ProtectedRoute
-              exact path="/admin/stations"
-              component={StationAdmin}
+              exact path="/admin/menu"
+              component={MenuAdmin}
             />
             <ProtectedRoute
               exact path="/preplist"
@@ -99,11 +100,13 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
-          <BottomNavBar />
+          {this.props.user.id ? <BottomNavBar /> : <Footer />}
         </div>
       </Router>
   )}
 }
+const mapStateToProps = reduxState => ({
+  user: reduxState.user,
+});
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);
