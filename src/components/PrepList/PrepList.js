@@ -8,12 +8,20 @@ class PrepList extends Component {
         this.props.dispatch({type: 'GET_PREPLIST', payload: {user_id: this.props.user.id}})
     }
 
+    handleClick = () => {
+        if(this.props.userStation.id != 0){
+            this.props.history.dispatch(`/menu/${this.props.userStation.id}`)
+        } else {
+            alert('Set your fucking station first you ass.')
+        }
+    }
+
     render() {
         return (
             <div>
                 Gather and Prep:
                 {this.props.preplist.length == 0 ? 
-                    <p>Nothing to prep</p> : 
+                    <button onClick={this.handleClick}>Start a preplist</button> :
                     <>{this.props.preplist.map((item) => <div key={item.id}><PrepListItem item={item} /></div>)}</>
                 }
             </div>
@@ -23,8 +31,8 @@ class PrepList extends Component {
 
 const mapStateToProps = reduxState => ({
     preplist: reduxState.preplist,
-    user: reduxState.user
-
+    user: reduxState.user,
+    userStation: reduxState.userStation
 })
 
 export default connect(mapStateToProps)(PrepList)

@@ -50,10 +50,10 @@ class Nav extends Component {
             {this.props.user.id && (
               <div>
               <MenuItem
-                component={Link} to="/stations"
+                component={Link} to={`/menu/${this.props.userStation.id}`}
                 onClick={this.handleClose}
               >
-                Stations
+                Dishes
               </MenuItem>
               <MenuItem
                 component={Link} to="/admin"
@@ -90,6 +90,7 @@ class Nav extends Component {
 
 const mapStateToProps = reduxState => ({
   user: reduxState.user,
+  userStation: reduxState.userStation
 });
 
 export default connect(mapStateToProps)(Nav);
