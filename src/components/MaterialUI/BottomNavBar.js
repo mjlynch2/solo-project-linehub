@@ -6,13 +6,16 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PreplistIcon from '@material-ui/icons/PlaylistAddCheck';
 import HomeIcon from '@material-ui/icons/Home';
+import { Link, withRouter } from 'react-router-dom';
+
 
 const styles = {
     flushToBottom: {
         width: '100%',
         position: 'fixed',
         bottom: 0,
-        backgroundColor: '#f2f2f2'
+        backgroundColor: '#f5f5f5',
+        borderTop: '1px solid #e0e0e0'
     }
 };
 
@@ -27,25 +30,20 @@ class BottomNavBar extends Component {
 
     render() {
         const { value } = this.state;
-        const { classes } = this.props;
 
         return (
             <BottomNavigation
                 value={value}
                 onChange={this.handleChange}
                 showLabels
-                className={classes.flushToBottom}
+                style={styles.flushToBottom}
             >
-                <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-                <BottomNavigationAction label="Preplist" icon={<PreplistIcon />} />
-                <BottomNavigationAction label="My dishes" icon={<RestaurantIcon />} />
+                <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
+                <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} />
+                <BottomNavigationAction label="My dishes" component={Link} to="/menu/1" icon={<RestaurantIcon />} />
             </BottomNavigation>
         );
     }
 }
 
-BottomNavBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(BottomNavBar);
+export default BottomNavBar;

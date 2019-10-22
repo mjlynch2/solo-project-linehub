@@ -23,6 +23,7 @@ import Orders from '../Orders/Orders';
 import MenuAdmin from '../MenuAdmin/MenuAdmin';
 import CreateDish from '../CreateDish/CreateDish';
 import BottomNavBar from '../MaterialUI/BottomNavBar';
+import PrepList from '../PrepList/PrepList';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -68,8 +69,12 @@ class App extends Component {
               component={StationAdmin}
             />
             <ProtectedRoute
-              exact path="/admin/menu"
-              component={MenuAdmin}
+              exact path="/admin/stations"
+              component={StationAdmin}
+            />
+            <ProtectedRoute
+              exact path="/preplist"
+              component={PrepList}
             />
             <ProtectedRoute
               exact path="/admin/menu/createdish"
