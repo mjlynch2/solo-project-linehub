@@ -24,7 +24,7 @@ class IngredientList extends Component {
 
     render(){
         return(
-            <div className="mainContainer">
+            <div>
                 <input
                     type="checkbox"
                     checked={this.isOnPreplist(this.props.ingredient.id)}

@@ -32,9 +32,6 @@ class Dish extends Component {
     render() {
         return (
             <div className="mainContainer">
-                ingredients: {JSON.stringify(this.props.ingredient)}
-                <br/>
-                prep list: {JSON.stringify(this.props.preplist)}
                 <h3>{this.state.dishName}</h3>
                 {this.props.ingredient.map((ingredient, index) => 
                     <div key={index}>
