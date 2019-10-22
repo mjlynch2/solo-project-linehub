@@ -5,18 +5,13 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import {connect} from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-
 import './App.css';
 import Station from '../StationPage/Station';
 import Menu from '../MenuPage/Menu';
@@ -27,6 +22,7 @@ import Admin from '../Admin/Admin';
 import Orders from '../Orders/Orders';
 import MenuAdmin from '../MenuAdmin/MenuAdmin';
 import CreateDish from '../CreateDish/CreateDish';
+import BottomNavBar from '../MaterialUI/BottomNavBar';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
@@ -99,6 +95,7 @@ class App extends Component {
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
+          <BottomNavBar />
         </div>
       </Router>
   )}

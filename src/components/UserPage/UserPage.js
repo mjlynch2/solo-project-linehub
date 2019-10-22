@@ -8,12 +8,10 @@ import PrepList from '../PrepList/PrepList';
 // and then instead of `props.user.username` you could use `user.username`
 const UserPage = (props) => (
   <div>
-    <h1 id="welcome">
+    <h4 id="welcome">
       Welcome, { props.user.username }!
-    </h1>
-    <p>Your ID is: {props.user.id}</p>
+    </h4>
     <PrepList />
-    <LogOutButton className="log-in" />
   </div>
 );
 
