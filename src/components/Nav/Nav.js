@@ -6,13 +6,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu';
 
-// const styles = {
-//   menuButton: {
-//     float: 'right',
-//     backgroundColor: 'f6f6f6'
-//   }
-// }
-
 class Nav extends Component {
   state = {
     anchorEl: null,

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import PrepList from '../PrepList/PrepList';
+import Station from '../StationPage/Station';
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -11,6 +12,7 @@ const UserPage = (props) => (
     <h4 id="welcome">
       Welcome, { props.user.username }!
     </h4>
+    <Station />
     <PrepList />
   </div>
 );

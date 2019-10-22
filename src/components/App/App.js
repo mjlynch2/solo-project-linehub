@@ -6,7 +6,6 @@ import {
   Switch,
 } from 'react-router-dom';
 import {connect} from 'react-redux';
-import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
@@ -15,7 +14,6 @@ import InfoPage from '../InfoPage/InfoPage';
 import './App.css';
 import Station from '../StationPage/Station';
 import Menu from '../MenuPage/Menu';
-import AppBar from '../MaterialUI/TopNav';
 import Dish from '../DishPage/Dish';
 import StationAdmin from '../StationAdmin/StationAdmin';
 import Admin from '../Admin/Admin';
@@ -25,6 +23,8 @@ import CreateDish from '../CreateDish/CreateDish';
 import BottomNavBar from '../MaterialUI/BottomNavBar';
 import PrepList from '../PrepList/PrepList';
 import TopNav from '../MaterialUI/TopNav';
+import 'typeface-roboto';
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
