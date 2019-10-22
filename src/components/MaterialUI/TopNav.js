@@ -14,7 +14,6 @@ const styles = {
         position: 'relative'
     },
     name: {
-        fontWeight: 10,
         flexGrow: 1
     },
     nav: {

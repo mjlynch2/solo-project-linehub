@@ -18,7 +18,7 @@ class PrepList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 Gather and Prep:
                 {this.props.preplist.length == 0 ? 
                     <button onClick={this.handleClick}>Start a preplist</button> :

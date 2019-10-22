@@ -15,7 +15,7 @@ class MenuAdmin extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 {this.props.menu.map(dish =>
                     <div key={dish.id}>
                         <MenuAdminItem name={dish.dish_name} id={dish.id} />

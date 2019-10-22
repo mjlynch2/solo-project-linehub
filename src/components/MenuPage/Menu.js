@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 class Menu extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'GET_MENU_FOR_STATION', id: this.props.match.params.id })
+        if (this.props.match.params.id === "0"){
+            this.props.dispatch({ type: 'GET_MENU' })
+        } else {
+            this.props.dispatch({ type: 'GET_MENU_FOR_STATION', id: this.props.match.params.id })
+
+        }
     }
 
     handleClick = (id) => {
@@ -12,7 +17,7 @@ class Menu extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 <h2>Dishes:</h2>
                 {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
                 {this.props.menu.map(dish => <div key={dish.id} onClick={() => this.handleClick(dish.id)}>{dish.dish_name}</div>)}

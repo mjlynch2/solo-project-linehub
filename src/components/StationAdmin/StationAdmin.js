@@ -28,7 +28,7 @@ class StationAdmin extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 {this.props.station.map(station => 
                     <div key={station.id}>
                         <StationAdminItem name={station.station_name} id={station.id} />

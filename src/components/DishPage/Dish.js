@@ -31,7 +31,7 @@ class Dish extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 ingredients: {JSON.stringify(this.props.ingredient)}
                 <br/>
                 prep list: {JSON.stringify(this.props.preplist)}

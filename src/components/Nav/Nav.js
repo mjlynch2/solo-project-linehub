@@ -61,12 +61,6 @@ class Nav extends Component {
               >
                 Admin
               </MenuItem>
-              <MenuItem
-                component={Link} to="/info"
-                onClick={this.handleClose}
-              >
-                Info Page
-              </MenuItem>
               <MenuItem 
                 onClick={() => this.props.dispatch({type: 'LOGOUT' })}
               >

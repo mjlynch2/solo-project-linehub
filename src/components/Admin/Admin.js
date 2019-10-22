@@ -5,7 +5,7 @@ class Admin extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainer">
                 <Link to="/admin/stations">
                     Stations
                 </Link>
