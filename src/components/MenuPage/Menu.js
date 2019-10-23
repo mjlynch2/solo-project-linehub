@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BackButton from '../MaterialUI/BackButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import GoIcon from '@material-ui/icons/ArrowForwardIos';
+import { ListItemSecondaryAction, ListItemIcon, Typography } from '@material-ui/core';
+
+const styles = {
+    goIcon: {
+        color: 'gray',
+    },
+    subhead: {
+        fontSize: '14pt',
+        textAlign: 'center'
+    }
+}
 
 class Menu extends Component {
 
@@ -19,10 +36,23 @@ class Menu extends Component {
     render() {
         return (
             <>
-                <BackButton title='Dishes' />
+                <BackButton title='LineHub | Dishes' />
                 <div className="mainContainer">
-                {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
-                {this.props.menu.map(dish => <div key={dish.id} onClick={() => this.handleClick(dish.id)}>{dish.dish_name}</div>)}
+                {this.props.match.params.id === '0' ? <Typography style={styles.subhead}>Full menu</Typography> : <Typography style={styles.subhead}>{this.props.userStation.station} Station</Typography>}
+                    <List>
+                        {this.props.menu.map(dish => <div key={dish.id}><ListItem button onClick={() => this.handleClick(dish.id)}>
+                            <ListItemIcon>
+                                <RestaurantMenuIcon fontSize='small'/>
+                            </ListItemIcon>
+                            <ListItemText disableTypography primary={dish.dish_name}/>
+                            <ListItemSecondaryAction>
+                                    <GoIcon style={styles.goIcon} fontSize='small'/>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                        <Divider variant='middle' />
+                        </div>
+                        )}
+                    </List>
             </div>
             </>
         )
@@ -30,7 +60,8 @@ class Menu extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-    menu: reduxState.menu
+    menu: reduxState.menu,
+    userStation: reduxState.userStation
 })
 
 export default connect(mapStateToProps)(Menu)

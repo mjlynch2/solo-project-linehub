@@ -6,6 +6,12 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuIcon from '@material-ui/icons/Menu'; 
 
+const styles = {
+  root: {
+    float: 'right'
+  }
+}
+
 class Nav extends Component {
   state = {
     anchorEl: null,
@@ -29,6 +35,7 @@ class Nav extends Component {
           aria-haspopup="true"
           color='inherit'
           onClick={this.handleClick}
+          style={styles.root}
         >
           <MenuIcon/>
         </Button>
