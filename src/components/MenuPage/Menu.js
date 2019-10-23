@@ -18,12 +18,13 @@ class Menu extends Component {
     }
     render() {
         return (
-            <div className="mainContainer">
-                <BackButton />
-                <h2>Dishes:</h2>
+            <>
+                <BackButton title='Dishes' />
+                <div className="mainContainer">
                 {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
                 {this.props.menu.map(dish => <div key={dish.id} onClick={() => this.handleClick(dish.id)}>{dish.dish_name}</div>)}
             </div>
+            </>
         )
     }
 }
