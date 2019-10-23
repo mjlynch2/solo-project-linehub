@@ -36,7 +36,7 @@ class Menu extends Component {
     render() {
         return (
             <>
-                <BackButton title='LineHub | Dishes' />
+                <BackButton title='Dishes' />
                 <div className="mainContainer">
                 {this.props.match.params.id === '0' ? <Typography style={styles.subhead}>Full menu</Typography> : <Typography style={styles.subhead}>{this.props.userStation.station} Station</Typography>}
                     <List>

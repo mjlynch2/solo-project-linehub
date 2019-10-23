@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import IngredientList from '../IngredientList/IngredientList';
-import { jsxAttribute } from '@babel/types';
-
-
+import BackButton from '../MaterialUI/BackButton';
+import { List, ListItem } from '@material-ui/core';
 
 class Dish extends Component {
 
@@ -31,13 +30,18 @@ class Dish extends Component {
 
     render() {
         return (
-            <div className="mainContainer">
-                <h3>{this.state.dishName}</h3>
-                {this.props.ingredient.map((ingredient, index) => 
-                    <div key={index}>
-                        <IngredientList ingredient={ingredient}/>
-                    </div>)}
-            </div>
+            <>
+                <BackButton title='Ingredients' />
+                <div className="mainContainer">
+                    <h3>{this.state.dishName}</h3>
+                    <List dense>
+                    {this.props.ingredient.map((ingredient, index) => 
+                        <ListItem key={index}>
+                            <IngredientList ingredient={ingredient} />
+                        </ListItem>)}
+                    </List>
+                </div>
+            </>
         )
     }
 }

@@ -8,7 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
   root: {
-    float: 'right'
+    float: 'right',
+    color: 'white'
   }
 }
 
@@ -33,7 +34,6 @@ class Nav extends Component {
         <Button
           aria-owns={anchorEl ? 'simple-menu' : undefined}
           aria-haspopup="true"
-          color='inherit'
           onClick={this.handleClick}
           style={styles.root}
         >

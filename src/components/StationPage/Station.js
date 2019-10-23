@@ -14,9 +14,7 @@ class Station extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({stationName: event.target.value})
-        console.log(event.target.value.station_name);
-        
+        this.setState({stationName: event.target.value})        
         this.props.dispatch({ type: 'SET_STATION_FOR_USER', id: event.target.value.id, name: event.target.value.station_name })
     }
 
@@ -24,8 +22,8 @@ class Station extends Component {
         return(
             <div>
                 {this.props.userStation.id === 0 ? 
-                    <div>Set your station: 
-                        <br/>
+                    <div>
+                        What station are you working tonight?
                         <StationSelect
                             stationName={this.state.stationName} 
                             station={this.props.station} 
@@ -34,7 +32,7 @@ class Station extends Component {
                     </div>
                     :
                     <div>
-                        You're working {this.props.userStation.station} tonight
+                        You're working {this.props.userStation.station} tonight. 
                         <br/>
                         <PrepList/>
                     </div>}

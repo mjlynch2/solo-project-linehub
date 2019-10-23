@@ -1,25 +1,34 @@
 import React, {Component} from 'react';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
+import Nav from '../Nav/Nav';
 
 const styles = {
     mainDiv: {
-        backgroundColor: '#f3e5f5',
+        backgroundColor: '#3f51b5',
+        borderBottom: '1px solid #e0e0e0',
         width: '100%',
         display: 'inline-flex',
-        height: '65',
-        borderBottom: '1px solid #ce93d8',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '75px',
     },
     title : {
-        margin: '6px 15px',
-        textAlign: 'center'
+        color: 'white',
+    },
+    subhead: {
+        fontWeight: '10',
+        color: 'white',
+        fontSize: '16pt'
     },
     icon: {    
         textAlign: 'left',
-        color: 'black'
+        color: 'white'
+    },
+    empty: {
+        width: 60,
     }
 }
 
@@ -32,12 +41,13 @@ class BackButton extends Component {
     render() {
         return (
             <div style={styles.mainDiv}>
-                <IconButton aria-label="Back" onClick={this.goBack} style={styles.icon}>
-                    <BackIcon fontSize="small"/>
-                </IconButton>
-                <Typography style={styles.title} variant="h5">
-                    {this.props.title ? this.props.title : ''}
-                </Typography>
+                {this.props.location.pathname === '/home' ? <div style={styles.empty}></div> :
+                    <IconButton aria-label="Back" onClick={this.goBack} style={styles.icon}>
+                        <BackIcon fontSize="small"/>
+                    </IconButton>}
+                {this.props.title != undefined ? <Typography style={styles.title} variant="h5">{this.props.title}</Typography> : <Typography style={styles.title} variant="h5">LineHub</Typography> }
+
+                <Nav />
             </div>
         );
     }
