@@ -6,6 +6,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PreplistIcon from '@material-ui/icons/PlaylistAddCheck';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
+import NotesIcon from '@material-ui/icons/Notes';
 
 
 const styles = {
@@ -41,6 +42,7 @@ class BottomNavBar extends Component {
                 <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
                 {/* <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} /> */}
                 <BottomNavigationAction label="My dishes" component={Link} to={`/menu/${this.props.userStation.id}`} icon={<RestaurantIcon />} />
+                <BottomNavigationAction label="Notes" icon={<NotesIcon/>}/>
             </BottomNavigation>
         );
     }
