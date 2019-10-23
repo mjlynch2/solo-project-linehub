@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Checkbox } from '@material-ui/core';
 
 class PrepListItem extends Component {
     state = {
         isChecked: false
     }
 
-    toggleStrikethrough = (event) => {
+    handleChange = () => {
         this.setState({isChecked: !this.state.isChecked})        
     }
 
     render() {
         return (
             <div>
-                    <input 
-                        type="checkbox"
+                    <Checkbox
+                        color='primary'
                         checked={this.state.isChecked}
-                        onChange={event => this.toggleStrikethrough(event)}
+                        onChange={() => this.handleChange()}
                     />
                     {this.props.item.name}
             </div>

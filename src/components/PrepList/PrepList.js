@@ -2,7 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PrepListItem from '../PrepListItem/PrepListItem';
 import { withRouter } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, List, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Divider, Typography } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+const styles = {
+    divider: {
+        marginTop: 30,
+        marginBottom: 30
+    },
+    header: {
+        textAlign: 'left',
+        marginLeft: 20
+    },
+    button: {
+        width: '60vw',
+        height: '8vh',
+        marginTop: 30,
+        fontSize: 14
+    }
+}
 
 class PrepList extends Component {
 
@@ -14,17 +32,25 @@ class PrepList extends Component {
         if(this.props.userStation.id != 0){
             this.props.history.push(`/menu/${this.props.userStation.id}`)
         } else {
-            alert('Set your fucking station first you ass.')
+            alert('Please set your station first')
         }
     }
 
     render() {
         return (
-            <div className="mainContainer">
+            <div>
                 {this.props.preplist.length == 0 ? 
-                    <Button variant="contained" color="primary" onClick={this.handleClick}>Start a preplist</Button> :
-                    <>{this.props.preplist.map((item) => <div key={item.id}><PrepListItem item={item} /></div>)}</>
-                }
+                    <Button style={styles.button} variant="contained" color="primary" onClick={this.handleClick}>Start a preplist</Button> :
+                    <>
+                        <Divider style={styles.divider} variant='middle'/>
+                            <Typography style={styles.header} variant='body1'>Prep List</Typography>
+                                <List dense>
+                                    {this.props.preplist.map((item) => 
+                                        <ListItem key={item.id}>
+                                            <PrepListItem item={item} />
+                                        </ListItem>)}
+                                </List>
+                    </>}
             </div>
         )
     }

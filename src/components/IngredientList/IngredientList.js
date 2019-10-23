@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Checkbox } from '@material-ui/core';
 
 class IngredientList extends Component {
 
@@ -25,8 +26,9 @@ class IngredientList extends Component {
     render(){
         return(
             <div>
-                <input
-                    type="checkbox"
+                <Checkbox
+                    value={this.props.ingredient.name}
+                    color='primary'
                     checked={this.isOnPreplist(this.props.ingredient.id)}
                     onChange={(event) => { this.addToPrepList(this.props.ingredient, event) }}
                 />
