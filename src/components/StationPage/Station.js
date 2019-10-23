@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationSelect from '../MaterialUI/StationSelect';
+import PrepList from '../PrepList/PrepList';
 
 class Station extends Component {
     
@@ -32,7 +33,11 @@ class Station extends Component {
                         />
                     </div>
                     :
-                    <div>You're working {this.props.userStation.station} tonight</div>}
+                    <div>
+                        You're working {this.props.userStation.station} tonight
+                        <br/>
+                        <PrepList/>
+                    </div>}
                 <br/>
             </div>
         )

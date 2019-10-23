@@ -13,7 +13,6 @@ const UserPage = (props) => (
       Welcome, { props.user.username }!
     </h4>
     <Station />
-    <PrepList />
   </div>
 );
 

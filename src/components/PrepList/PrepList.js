@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PrepListItem from '../PrepListItem/PrepListItem';
 import { withRouter } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 class PrepList extends Component {
 
@@ -20,9 +21,8 @@ class PrepList extends Component {
     render() {
         return (
             <div className="mainContainer">
-                Gather and Prep:
                 {this.props.preplist.length == 0 ? 
-                    <button onClick={this.handleClick}>Start a preplist</button> :
+                    <Button variant="contained" color="primary" onClick={this.handleClick}>Start a preplist</Button> :
                     <>{this.props.preplist.map((item) => <div key={item.id}><PrepListItem item={item} /></div>)}</>
                 }
             </div>
