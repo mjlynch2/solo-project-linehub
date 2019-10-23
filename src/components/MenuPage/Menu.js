@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import BackButton from '../MaterialUI/BackButton';
 
 class Menu extends Component {
 
@@ -18,6 +19,7 @@ class Menu extends Component {
     render() {
         return (
             <div className="mainContainer">
+                <BackButton />
                 <h2>Dishes:</h2>
                 {/* <pre>{JSON.stringify(this.props.menu)}</pre> */}
                 {this.props.menu.map(dish => <div key={dish.id} onClick={() => this.handleClick(dish.id)}>{dish.dish_name}</div>)}

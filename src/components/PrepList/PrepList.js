@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PrepListItem from '../PrepListItem/PrepListItem';
+import { withRouter } from 'react-router-dom';
 
 class PrepList extends Component {
 
@@ -10,7 +11,7 @@ class PrepList extends Component {
 
     handleClick = () => {
         if(this.props.userStation.id != 0){
-            this.props.history.dispatch(`/menu/${this.props.userStation.id}`)
+            this.props.history.push(`/menu/${this.props.userStation.id}`)
         } else {
             alert('Set your fucking station first you ass.')
         }
@@ -35,4 +36,4 @@ const mapStateToProps = reduxState => ({
     userStation: reduxState.userStation
 })
 
-export default connect(mapStateToProps)(PrepList)
+export default withRouter(connect(mapStateToProps)(PrepList));
