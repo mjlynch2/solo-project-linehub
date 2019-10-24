@@ -22,7 +22,6 @@ import MenuAdmin from '../MenuAdmin/MenuAdmin';
 import CreateDish from '../CreateDish/CreateDish';
 import BottomNavBar from '../MaterialUI/BottomNavBar';
 import PrepList from '../PrepList/PrepList';
-import TopNav from '../MaterialUI/TopNav';
 import 'typeface-roboto';
 
 class App extends Component {

@@ -24,6 +24,7 @@ class Station extends Component {
                 {this.props.userStation.id === 0 ? 
                     <div>
                         What station are you working tonight?
+                        <br/>
                         <StationSelect
                             stationName={this.state.stationName} 
                             station={this.props.station} 

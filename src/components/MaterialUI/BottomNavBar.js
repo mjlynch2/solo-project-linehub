@@ -43,7 +43,7 @@ class BottomNavBar extends Component {
                         style={styles.flushToBottom}
                     >
                         <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
-                        {/* <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} /> */}
+                       {/* <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} /> */}
                         <BottomNavigationAction label="My dishes" component={Link} to={`/menu/${this.props.userStation.id}`} icon={<RestaurantIcon />} />
                         <BottomNavigationAction label="Notes" icon={<NotesIcon/>}/>
                     </BottomNavigation>

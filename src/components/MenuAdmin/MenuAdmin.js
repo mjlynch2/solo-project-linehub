@@ -4,11 +4,14 @@ import MenuAdminItem from '../MenuAdminItem/MenuAdminItem';
 import CreateDish from '../CreateDish/CreateDish';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import IconButton from '@material-ui/core/IconButton';
+
+const styles = { 
+    fab: {
+        textAlign: 'center'
+    }
+}
 
 class MenuAdmin extends Component {
 
@@ -34,7 +37,6 @@ class MenuAdmin extends Component {
         return (
             <>
                 <div className="mainContainer">
-                    <h3>Menu</h3>
                     <List>
                         {this.props.menu.map(dish =>
                             <ListItem key={dish.id}>
@@ -42,10 +44,11 @@ class MenuAdmin extends Component {
                             </ListItem>)}
                     </List>
                     <br/>
-                    <Fab color="primary" aria-label="add" onClick={this.handleClick}>
+                    {this.state.showCreateDish ? <CreateDish /> : ''} 
+                    <Fab style={styles.fab} color="primary" aria-label="add" onClick={this.handleClick}>
                         <AddIcon />
                     </Fab>
-                    {this.state.showCreateDish ? <CreateDish /> : ''}    
+   
                 </div>
             </>
         )

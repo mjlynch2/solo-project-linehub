@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
-import { ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import { ListItemText, ListItemSecondaryAction, IconButton, TextField, Button } from '@material-ui/core';
+
+const styles = {
+    button: {
+        marginTop: 10,
+        marginRight: 15,
+        width: 100
+    },
+}
 
 class MenuAdminItem extends Component {
 
@@ -37,8 +46,15 @@ class MenuAdminItem extends Component {
             <div>
                 {this.state.isEditable ?
                     <div>
-                        <input type="text" defaultValue={this.props.name} onChange={event => this.handleChange(event)} />
-                        <button className="saveChanges" onClick={() => this.handleSave(this.props.id)}>Save</button>
+                        <TextField dense label="Dish Name" defaultValue={this.props.name} onChange={event => this.handleChange(event)}/>
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="edit" onClick={() => this.handleDelete(this.props.id)}>
+                                <DeleteIcon color="secondary"/>
+                            </IconButton>
+                        </ListItemSecondaryAction>
+                        <br/>
+                        <Button variant="outlined" style={styles.button} color="default" onClick={() => this.setState({isEditable: false})}>Cancel</Button>
+                        <Button variant="contained" style={styles.button} color="primary" onClick={() => this.handleSave(this.props.id)}>Save</Button>
                     </div>
                     :
                     <div>
@@ -53,7 +69,9 @@ class MenuAdminItem extends Component {
                 {/* <button onClick={() => this.handleDelete(this.props.id)}>Delete</button> */}
             </div>
         )
-    }
-}
-
-export default connect()(MenuAdminItem)
+            }
+        }
+        
+        export default connect()(MenuAdminItem);
+        
+// onClick={() => this.handleSave(this.props.id)}>Save</button>
