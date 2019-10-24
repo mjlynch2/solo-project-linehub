@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MenuAdminItem from '../MenuAdminItem/MenuAdminItem';
 import CreateDish from '../CreateDish/CreateDish';
+import AdminTabs from '../MaterialUI/AdminTabs';
+import BackButton from '../MaterialUI/BackButton';
 
 class MenuAdmin extends Component {
 
@@ -15,15 +17,19 @@ class MenuAdmin extends Component {
 
     render() {
         return (
-            <div className="mainContainer">
-                {this.props.menu.map(dish =>
-                    <div key={dish.id}>
-                        <MenuAdminItem name={dish.dish_name} id={dish.id} />
-                    </div>
-                )}
-                <br/>
-                <button onClick={this.handleClick}> Create New Dish</button>    
-            </div>
+            <>
+                <BackButton title="Admin" />
+                <AdminTabs />
+                <div className="mainContainer">
+                    {this.props.menu.map(dish =>
+                        <div key={dish.id}>
+                            <MenuAdminItem name={dish.dish_name} id={dish.id} />
+                        </div>
+                    )}
+                    <br/>
+                    <button onClick={this.handleClick}> Create New Dish</button>    
+                </div>
+            </>
         )
     }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationAdminItem from '../StationAdminItem/StationAdminItem';
+import AdminTabs from '../MaterialUI/AdminTabs';
+import BackButton from '../MaterialUI/BackButton';
 
 class StationAdmin extends Component {
 
@@ -28,20 +30,24 @@ class StationAdmin extends Component {
 
     render() {
         return (
-            <div className="mainContainer">
-                {this.props.station.map(station => 
-                    <div key={station.id}>
-                        <StationAdminItem name={station.station_name} id={station.id} />
-                    </div>)}
-                {this.state.showInput ? 
-                    <div>
-                        <input type="text" onChange={event=>this.handleChange(event)}/>
-                        <button onClick={this.handleSave}>Save</button>
-                    </div>
-                    :
-                    <></>}
-                <button onClick={this.handleClick}>Add new station</button>
-            </div>
+            <>
+                <BackButton title="Admin" />
+                <AdminTabs />
+                <div className="mainContainer">
+                    {this.props.station.map(station => 
+                        <div key={station.id}>
+                            <StationAdminItem name={station.station_name} id={station.id} />
+                        </div>)}
+                    {this.state.showInput ? 
+                        <div>
+                            <input type="text" onChange={event=>this.handleChange(event)}/>
+                            <button onClick={this.handleSave}>Save</button>
+                        </div>
+                        :
+                        <></>}
+                    <button onClick={this.handleClick}>Add new station</button>
+                </div>
+            </>
         )
     }
 }

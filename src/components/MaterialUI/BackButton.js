@@ -4,6 +4,7 @@ import BackIcon from '@material-ui/icons/ArrowBack';
 import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import Nav from '../Nav/Nav';
+import AdminTabs from './AdminTabs';
 
 const styles = {
     mainDiv: {
@@ -38,7 +39,7 @@ class BackButton extends Component {
         this.props.history.goBack();
     }
 
-    render() {
+    render() {        
         return (
             <div style={styles.mainDiv}>
                 {this.props.location.pathname === '/home' ? <div style={styles.empty}></div> :

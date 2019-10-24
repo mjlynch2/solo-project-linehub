@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AdminTabs from '../MaterialUI/AdminTabs';
+import BackButton from '../MaterialUI/BackButton';
+import MenuAdmin from '../MenuAdmin/MenuAdmin';
 
 class Admin extends Component {
 
     render() {
         return (
-            <div className="mainContainer">
-                <Link to="/admin/stations">
-                    Stations
-                </Link>
-                <br />
-                <Link to="/admin/menu">
-                    Menu
-                </Link>
-                <br/>
-                <Link to="/admin/orders">
-                    Orders
-                </Link>
-            </div>
+            <>
+                <MenuAdmin />
+            </>
         )
     }
 }
