@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import { ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 
 class MenuAdminItem extends Component {
 
@@ -39,11 +42,15 @@ class MenuAdminItem extends Component {
                     </div>
                     :
                     <div>
-                        {this.props.name}
-                        <button className="editButton" onClick={() => this.handleEdit(this.props.name)}>Edit</button>
+                        <ListItemText>{this.props.name}</ListItemText>
+                        <ListItemSecondaryAction>
+                            <IconButton edge="end" aria-label="edit" onClick={() => this.handleEdit(this.props.name)}>
+                                <EditIcon />
+                            </IconButton>
+                        </ListItemSecondaryAction>
                     </div>
                 }
-                <button onClick={() => this.handleDelete(this.props.id)}>Delete</button>
+                {/* <button onClick={() => this.handleDelete(this.props.id)}>Delete</button> */}
             </div>
         )
     }

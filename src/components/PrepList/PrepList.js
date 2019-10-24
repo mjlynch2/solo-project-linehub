@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PrepListItem from '../PrepListItem/PrepListItem';
 import { withRouter } from 'react-router-dom';
 import { Button, List, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Divider, Typography } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = {
     divider: {
