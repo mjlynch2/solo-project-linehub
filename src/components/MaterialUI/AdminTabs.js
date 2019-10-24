@@ -1,38 +1,86 @@
-import React, { Component } from 'react';
+import MenuAdmin from '../MenuAdmin/MenuAdmin';
+import StationAdmin from '../StationAdmin/StationAdmin';
+import React from 'react';
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { Link } from 'react-router-dom';
+import Typography from '@material-ui/core/Typography';
+import Orders from '../Orders/Orders';
 
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-};
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
 
-class AdminTabs extends Component {
-    state = {
-        value: 0,
-    };
-
-    handleChange = (event, value) => {
-        this.setState({ value });
-        console.log(value);
-        
-    };
-
-
-    render() {
-        const { value } = this.state;
-        return (
-                <Tabs value={value} onChange={this.handleChange} style={styles.root} variant='fullWidth' indicatorColor='primary'>
-                    <Tab label="Menu" component={Link} to="/admin/menu"/>
-                    <Tab label="Orders" component={Link} to="/admin/orders"/>
-                    <Tab label="Stations" component={Link} to="/admin/stations"/>
-                    <Tab label="notes" />
-                </Tabs>
-        );
-    }
+    return (
+        <Typography
+            component="div"
+            role="tabpanel"
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+            variant='inherit'
+        >
+            {children}
+        </Typography>
+    );
 }
 
-export default AdminTabs;
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
+};
 
+function a11yProps(index) {
+    return {
+        id: `full-width-tab-${index}`,
+        'aria-controls': `full-width-tabpanel-${index}`,
+    };
+}
+
+export default function FullWidthTabs() {
+    const theme = useTheme();
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+
+    const handleChangeIndex = index => {
+        setValue(index);
+    };
+
+    return (
+        <>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                    variant="fullWidth"
+                    aria-label="Admin Tabs"
+                >
+                    <Tab label="Menu" {...a11yProps(0)} />
+                    <Tab label="Orders" {...a11yProps(1)} />
+                    <Tab label="Stations" {...a11yProps(2)} />
+                </Tabs>
+            <SwipeableViews
+                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                index={value}
+                onChangeIndex={handleChangeIndex}
+            >
+                <TabPanel value={value} index={0} dir={theme.direction}>
+                    <MenuAdmin />
+                </TabPanel>
+                <TabPanel value={value} index={1} dir={theme.direction}>
+                    <Orders />
+                </TabPanel>
+                <TabPanel value={value} index={2} dir={theme.direction}>
+                    <StationAdmin />
+                </TabPanel>
+            </SwipeableViews>
+        </>
+    );
+}

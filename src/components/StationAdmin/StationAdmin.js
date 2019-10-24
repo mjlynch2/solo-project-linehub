@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationAdminItem from '../StationAdminItem/StationAdminItem';
-import AdminTabs from '../MaterialUI/AdminTabs';
-import BackButton from '../MaterialUI/BackButton';
 
 class StationAdmin extends Component {
 
@@ -31,8 +29,8 @@ class StationAdmin extends Component {
     render() {
         return (
             <>
-                <BackButton title="Admin" />
-                <AdminTabs />
+                {/* <BackButton title="Admin" />
+                <AdminTabs /> */}
                 <div className="mainContainer">
                     {this.props.station.map(station => 
                         <div key={station.id}>

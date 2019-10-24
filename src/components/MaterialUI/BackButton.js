@@ -42,7 +42,7 @@ class BackButton extends Component {
     render() {        
         return (
             <div style={styles.mainDiv}>
-                {this.props.location.pathname === '/home' ? <div style={styles.empty}></div> :
+                {this.props.location.pathname === '/home' || '/admin' ? <div style={styles.empty}></div> :
                     <IconButton aria-label="Back" onClick={this.goBack} style={styles.icon}>
                         <BackIcon fontSize="small"/>
                     </IconButton>}
