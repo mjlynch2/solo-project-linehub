@@ -7,6 +7,7 @@ import PreplistIcon from '@material-ui/icons/PlaylistAddCheck';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
 import NotesIcon from '@material-ui/icons/Notes';
+import { withRouter } from 'react-router-dom';
 
 
 const styles = {
@@ -33,17 +34,21 @@ class BottomNavBar extends Component {
         const { value } = this.state;
 
         return (
-            <BottomNavigation
-                value={value}
-                onChange={this.handleChange}
-                showLabels
-                style={styles.flushToBottom}
-            >
-                <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
-                {/* <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} /> */}
-                <BottomNavigationAction label="My dishes" component={Link} to={`/menu/${this.props.userStation.id}`} icon={<RestaurantIcon />} />
-                <BottomNavigationAction label="Notes" icon={<NotesIcon/>}/>
-            </BottomNavigation>
+            <>
+                {this.props.location.pathname === '/admin' ? <></> :
+                    <BottomNavigation
+                        value={value}
+                        onChange={this.handleChange}
+                        showLabels
+                        style={styles.flushToBottom}
+                    >
+                        <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
+                        {/* <BottomNavigationAction label="Preplist" component={Link} to="/preplist" icon={<PreplistIcon />} /> */}
+                        <BottomNavigationAction label="My dishes" component={Link} to={`/menu/${this.props.userStation.id}`} icon={<RestaurantIcon />} />
+                        <BottomNavigationAction label="Notes" icon={<NotesIcon/>}/>
+                    </BottomNavigation>
+                }
+            </>
         );
     }
 }
@@ -52,4 +57,4 @@ const mapStateToProps = reduxState => ({
     userStation: reduxState.userStation
 })
 
-export default connect(mapStateToProps)(BottomNavBar)
+export default withRouter(connect(mapStateToProps)(BottomNavBar));

@@ -4,7 +4,6 @@ import BackIcon from '@material-ui/icons/ArrowBack';
 import { withRouter } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import Nav from '../Nav/Nav';
-import AdminTabs from './AdminTabs';
 
 const styles = {
     mainDiv: {
@@ -42,12 +41,18 @@ class BackButton extends Component {
     render() {        
         return (
             <div style={styles.mainDiv}>
-                {this.props.location.pathname === '/home' || '/admin' ? <div style={styles.empty}></div> :
+                {this.props.location.pathname === '/home' ? <div style={styles.empty}></div> :
                     <IconButton aria-label="Back" onClick={this.goBack} style={styles.icon}>
                         <BackIcon fontSize="small"/>
                     </IconButton>}
-                {this.props.title != undefined ? <Typography style={styles.title} variant="h5">{this.props.title}</Typography> : <Typography style={styles.title} variant="h5">LineHub</Typography> }
-
+                {this.props.title != undefined ? 
+                    <Typography style={styles.title} variant="h5">
+                        {this.props.title}
+                    </Typography> 
+                    : 
+                    <Typography style={styles.title} variant="h5">
+                        LineHub
+                    </Typography> }
                 <Nav />
             </div>
         );
