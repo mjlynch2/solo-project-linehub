@@ -3,10 +3,13 @@ body {
     margin: 0;
     font-weight: 300;
     font-size: 11pt;
+    /* background-color:#F0F0F0; */
 }
 
 .mainContainer {
-    margin-top: 15px  
+    margin-top: 10px;
+    display: block;
+    text-align: center;
     /* margin-left: 5px; */
 }
 

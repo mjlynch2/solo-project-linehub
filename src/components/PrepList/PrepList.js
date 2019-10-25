@@ -39,7 +39,7 @@ class PrepList extends Component {
         return (
             <div>
                 {this.props.preplist.length == 0 ? 
-                    <Button style={styles.button} variant="contained" color="primary" onClick={this.handleClick}>Start a preplist</Button> :
+                    <Button style={styles.button} variant="contained" color='primary' onClick={this.handleClick}>Start a preplist</Button> :
                     <>
                         <Divider style={styles.divider} variant='middle'/>
                             <Typography style={styles.header} variant='body1'>Prep List</Typography>

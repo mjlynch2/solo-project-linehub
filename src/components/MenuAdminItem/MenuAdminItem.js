@@ -46,14 +46,15 @@ class MenuAdminItem extends Component {
             <div>
                 {this.state.isEditable ?
                     <div>
-                        <TextField dense label="Dish Name" defaultValue={this.props.name} onChange={event => this.handleChange(event)}/>
+                        <ListItemText>
+                            <TextField margin="dense" type="text" label="Dish Name" defaultValue={this.props.name} onChange={event => this.handleChange(event)}/>
+                        </ListItemText>
                         <ListItemSecondaryAction>
                             <IconButton edge="end" aria-label="edit" onClick={() => this.handleDelete(this.props.id)}>
-                                <DeleteIcon color="secondary"/>
+                                <DeleteIcon color='primary'/>
                             </IconButton>
                         </ListItemSecondaryAction>
-                        <br/>
-                        <Button variant="outlined" style={styles.button} color="default" onClick={() => this.setState({isEditable: false})}>Cancel</Button>
+                        <Button variant="outlined" style={styles.button} color="primary" onClick={() => this.setState({isEditable: false})}>Cancel</Button>
                         <Button variant="contained" style={styles.button} color="primary" onClick={() => this.handleSave(this.props.id)}>Save</Button>
                     </div>
                     :

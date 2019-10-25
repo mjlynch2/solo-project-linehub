@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MenuAdminItem from '../MenuAdminItem/MenuAdminItem';
 import CreateDish from '../CreateDish/CreateDish';
-import Fab from '@material-ui/core/Fab';
+import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
 const styles = { 
-    fab: {
-        textAlign: 'center'
+    button: {
+        marginBottom: 20,
     }
 }
 
@@ -45,9 +45,10 @@ class MenuAdmin extends Component {
                     </List>
                     <br/>
                     {this.state.showCreateDish ? <CreateDish /> : ''} 
-                    <Fab style={styles.fab} color="primary" aria-label="add" onClick={this.handleClick}>
+                    <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
                         <AddIcon />
-                    </Fab>
+                        Add New Dish
+                    </Button>
    
                 </div>
             </>

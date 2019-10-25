@@ -23,6 +23,7 @@ import CreateDish from '../CreateDish/CreateDish';
 import BottomNavBar from '../MaterialUI/BottomNavBar';
 import PrepList from '../PrepList/PrepList';
 import 'typeface-roboto';
+import Theme from '../../theme/theme';
 
 class App extends Component {
   componentDidMount () {
@@ -32,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <Theme>
         <div>
           {/* <TopNav /> */}
           <Switch>
@@ -101,6 +103,7 @@ class App extends Component {
           </Switch>
           {this.props.user.id ? <BottomNavBar /> : <Footer />}
         </div>
+        </Theme>
       </Router>
   )}
 }

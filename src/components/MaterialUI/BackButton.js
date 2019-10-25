@@ -7,9 +7,8 @@ import Nav from '../Nav/Nav';
 
 const styles = {
     mainDiv: {
-        backgroundColor: '#3f51b5',
-        boxShadow: `0px 3px 4px 2px rgba(100,100,100,0.35)`,
         width: '100%',
+        backgroundColor: '#212121',
         display: 'inline-flex',
         justifyContent: 'space-between',
         alignItems: 'center',

@@ -9,6 +9,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Orders from '../Orders/Orders';
 
+const styles = {
+    tab: {
+        // backgroundColor: '#484848',
+        // color: 'white'
+    }
+}
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -53,19 +60,21 @@ export default function FullWidthTabs() {
     };
 
     return (
-        <>
+        <div>
+            <div style={styles.tab}>
                 <Tabs
                     value={value}
                     onChange={handleChange}
                     indicatorColor="primary"
-                    textColor="primary"
+                    // textColor="secondary"
                     variant="fullWidth"
                     aria-label="Admin Tabs"
                 >
-                    <Tab label="Menu" {...a11yProps(0)} />
-                    <Tab label="Orders" {...a11yProps(1)} />
-                    <Tab label="Stations" {...a11yProps(2)} />
+                    <Tab style={styles.tab} label="Menu" {...a11yProps(0)} />
+                    <Tab style={styles.tab} label="Orders" {...a11yProps(1)} />
+                    <Tab style={styles.tab} label="Stations" {...a11yProps(2)} />
                 </Tabs>
+            </div>
             <SwipeableViews
                 axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
                 index={value}
@@ -81,6 +90,6 @@ export default function FullWidthTabs() {
                     <StationAdmin />
                 </TabPanel>
             </SwipeableViews>
-        </>
+        </div>
     );
 }
