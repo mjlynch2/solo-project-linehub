@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationAdminItem from '../StationAdminItem/StationAdminItem';
 import { ListItem, List } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
+
+const styles = {
+    button: {
+        marginBottom: 20,
+    },
+    saveButton: {
+        margin: 10,
+        width: 100,
+        align: 'left',
+        display: 'inline'
+    },
+    input: {
+        textAlign: 'left'
+    }
+}
 
 class StationAdmin extends Component {
 
@@ -46,13 +64,21 @@ class StationAdmin extends Component {
                         {this.mapStations()}
                     </List>
                     {this.state.showInput ? 
-                        <div>
-                            <input type="text" onChange={event=>this.handleChange(event)}/>
-                            <button onClick={this.handleSave}>Save</button>
-                        </div>
+                        <>
+                            <TextField margin="dense" type="text" label="Station Name" placeholder="e.g. Garde Manger" onChange={event => this.handleChange(event)} />
+                            <br/>
+                            <Button variant="outlined" style={styles.saveButton} color="primary" onClick={() => this.setState({ showInput: false })}>Cancel</Button>
+                            <Button variant="contained" style={styles.saveButton} color="primary" onClick={() => this.handleSave(this.props.id)}>Save</Button>
+                        </>     
                         :
-                        <></>}
-                    <button onClick={this.handleClick}>Add new station</button>
+                        <>
+                            <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
+                                <AddIcon />
+                                Add New Station
+                            </Button>
+                        </>
+                    }
+
                 </div>
             </>
         )
