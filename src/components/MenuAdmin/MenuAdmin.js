@@ -27,8 +27,9 @@ class MenuAdmin extends Component {
 
     toggleCreateDish = () => {
         this.setState({showCreateDish: !this.state.showCreateDish})
-        this.props.dispatch({type: 'GET_MENU'})
-        console.log('Getting menu!');
+        setTimeout(()=> {
+            this.props.dispatch({ type: 'GET_MENU' })
+        }, 500);
     }
 
     handleEdit = (name) => {
@@ -37,6 +38,15 @@ class MenuAdmin extends Component {
 
     handleClick = () => {
         this.setState({showCreateDish: true})
+    }
+
+    mapDishes = () => {
+        return (
+            this.props.menu.map(dish =>
+                <ListItem key={dish.id}>
+                    <MenuAdminItem name={dish.dish_name} id={dish.id} />
+                </ListItem>)
+        )
     }
 
     render() {
@@ -49,10 +59,7 @@ class MenuAdmin extends Component {
                         :
                         <>
                             <List>
-                                {this.props.menu.map(dish =>
-                                    <ListItem key={dish.id}>
-                                        <MenuAdminItem name={dish.dish_name} id={dish.id} />
-                                    </ListItem>)}
+                                {this.mapDishes()}
                             </List>
                             <br />
                             <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>

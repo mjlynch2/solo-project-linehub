@@ -47,7 +47,6 @@ class CreateDish extends Component {
     };
 
     createNewDish = () => {
-        this.props.dispatch({ type: 'GET_MENU' });
         this.props.dispatch({type: 'ADD_MENU_ITEM', name: this.state.dishName, station: this.state.station, payload: this.state.ingredients});
         alert(`Trill, yo! ${this.state.dishName} has been added to the menu!`);
         this.props.toggleCreateDish();
