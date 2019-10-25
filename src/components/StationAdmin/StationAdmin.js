@@ -13,12 +13,7 @@ const styles = {
     saveButton: {
         margin: 10,
         width: 100,
-        align: 'left',
-        display: 'inline'
     },
-    input: {
-        textAlign: 'left'
-    }
 }
 
 class StationAdmin extends Component {
@@ -57,8 +52,6 @@ class StationAdmin extends Component {
     render() {
         return (
             <>
-                {/* <BackButton title="Admin" />
-                <AdminTabs /> */}
                 <div className="mainContainer">
                     <List>
                         {this.mapStations()}
@@ -78,7 +71,6 @@ class StationAdmin extends Component {
                             </Button>
                         </>
                     }
-
                 </div>
             </>
         )

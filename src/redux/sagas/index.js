@@ -6,6 +6,7 @@ import stationSaga from './stationSaga';
 import menuSaga from './menuSaga';
 import ingredientSaga from './ingredientSaga';
 import preplistSaga from './preplistSaga';
+import orderSaga from './orderSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     menuSaga(),
     ingredientSaga(),
     preplistSaga(),
+    orderSaga(),
   ]);
 }
