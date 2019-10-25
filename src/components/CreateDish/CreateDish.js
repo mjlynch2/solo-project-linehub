@@ -3,8 +3,17 @@ import Creatable from 'react-select/creatable';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
-import { TextField } from '@material-ui/core';
+import { TextField, Button } from '@material-ui/core';
 import './CreateDish.css';
+import MenuAdmin from '../MenuAdmin/MenuAdmin';
+
+const styles = {
+    button: {
+        marginTop: 10,
+        marginRight: 15,
+        width: 100
+    },
+}
 
 class CreateDish extends Component {
 
@@ -12,7 +21,7 @@ class CreateDish extends Component {
         dishName: '',
         ingredients: [],
         isLoading: false,
-        station: ''
+        station: '',
     }
 
     componentDidMount(){
@@ -38,8 +47,11 @@ class CreateDish extends Component {
     };
 
     createNewDish = () => {
+        this.props.dispatch({ type: 'GET_MENU' });
         this.props.dispatch({type: 'ADD_MENU_ITEM', name: this.state.dishName, station: this.state.station, payload: this.state.ingredients});
-        this.setState({dishName: ''})
+        alert(`Trill, yo! ${this.state.dishName} has been added to the menu!`);
+        this.props.toggleCreateDish();
+        // this.setState({dishName: ''})
     }
 
     handleChange = (value, actionMeta) => {
@@ -51,16 +63,13 @@ class CreateDish extends Component {
     }
 
     handleStationSelect = (value) => {
-        this.setState({ station: value})
-        console.log(value);
-        
+        this.setState({ station: value})        
     }
 
     render(){
 
         return(
             <div className="createDishDiv">
-
                 <TextField
                     label="Dish name"
                     placeholder="e.g. Fusilli with basil pesto"
@@ -69,15 +78,17 @@ class CreateDish extends Component {
                     fullWidth
                 />
                 <Divider variant="middle"/>
-                <div className="labelDiv">Set Station...</div>
+                <div className="labelDiv">What Station?</div>
+                <div className="selectDiv">
                 <Select 
                     options={this.props.station}
                     onChange={this.handleStationSelect}
                 />
+                </div>
                 <br/>
                 <Divider variant="middle" />
                 <br/>
-                <div className="labelDiv">Add ingredient...</div>
+                <div className="labelDiv">Add or Create New Ingredients</div>
                 <div className="selectDiv">
                     <Creatable
                         options={this.props.options}
@@ -85,7 +96,10 @@ class CreateDish extends Component {
                         onChange={this.handleChange} />
                 </div>
                 {this.state.ingredients == null ? '' : <ul>{this.state.ingredients.map((item, index) => <li key={index}>{item.value}</li>)}</ul>}
-                <button onClick={this.createNewDish}>Create Dish!</button>
+                <Button variant="outlined" style={styles.button} color="primary" onClick={() => this.props.toggleCreateDish()}>Cancel</Button>
+                <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewDish}>
+                    Save
+                </Button>
             </div>
         )
     }

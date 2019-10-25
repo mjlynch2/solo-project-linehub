@@ -19,10 +19,16 @@ class MenuAdmin extends Component {
         showCreateDish: false,
         isEditable: false,
         dishName: '',
-
     }
+
     componentDidMount() {
         this.props.dispatch({ type: 'GET_MENU' })
+    }
+
+    toggleCreateDish = () => {
+        this.setState({showCreateDish: !this.state.showCreateDish})
+        this.props.dispatch({type: 'GET_MENU'})
+        console.log('Getting menu!');
     }
 
     handleEdit = (name) => {
@@ -34,22 +40,27 @@ class MenuAdmin extends Component {
     }
 
     render() {
+
         return (
             <>
                 <div className="mainContainer">
-                    <List>
-                        {this.props.menu.map(dish =>
-                            <ListItem key={dish.id}>
-                                <MenuAdminItem name={dish.dish_name} id={dish.id} />
-                            </ListItem>)}
-                    </List>
-                    <br/>
-                    {this.state.showCreateDish ? <CreateDish /> : ''} 
-                    <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
-                        <AddIcon />
-                        Add New Dish
-                    </Button>
-   
+                    {this.state.showCreateDish ? 
+                        <CreateDish toggleCreateDish={this.toggleCreateDish} showCreateDish={this.state.showCreateDish}/> 
+                        :
+                        <>
+                            <List>
+                                {this.props.menu.map(dish =>
+                                    <ListItem key={dish.id}>
+                                        <MenuAdminItem name={dish.dish_name} id={dish.id} />
+                                    </ListItem>)}
+                            </List>
+                            <br />
+                            <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
+                                <AddIcon />
+                                Add New Dish
+                            </Button>
+                        </>
+                    } 
                 </div>
             </>
         )
