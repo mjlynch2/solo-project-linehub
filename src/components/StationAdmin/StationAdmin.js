@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StationAdminItem from '../StationAdminItem/StationAdminItem';
+import { ListItem, List } from '@material-ui/core';
 
 class StationAdmin extends Component {
 
@@ -26,16 +27,24 @@ class StationAdmin extends Component {
         this.setState({ showInput: false, newStationName: ''})
     }
 
+    mapStations = () => {
+        return (
+            this.props.station.map(station =>
+                <ListItem key={station.id}>
+                    <StationAdminItem name={station.station_name} id={station.id} />
+                </ListItem>)
+        )
+    }
+
     render() {
         return (
             <>
                 {/* <BackButton title="Admin" />
                 <AdminTabs /> */}
                 <div className="mainContainer">
-                    {this.props.station.map(station => 
-                        <div key={station.id}>
-                            <StationAdminItem name={station.station_name} id={station.id} />
-                        </div>)}
+                    <List>
+                        {this.mapStations()}
+                    </List>
                     {this.state.showInput ? 
                         <div>
                             <input type="text" onChange={event=>this.handleChange(event)}/>

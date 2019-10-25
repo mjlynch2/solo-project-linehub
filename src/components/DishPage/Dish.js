@@ -16,11 +16,6 @@ class Dish extends Component {
         this.getDishName();
     }
 
-    // componentDidUpdate = (prevProps) => {
-    //     if(this.props.prepList !== prevProps.prepList){
-    //     }
-    // }
-
     getDishName = () => {
         const dish = this.props.menu.find(({ id }) => id == this.props.match.params.id);
         if(dish != undefined){
