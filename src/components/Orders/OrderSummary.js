@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import OrderItem from './OrderItem';
 
 const styles = {
     button: {
@@ -19,28 +20,26 @@ class OrderSummary extends Component {
         isEditable: false,
     }
 
-    componentDidMount() {
-        this.props.dispatch({ type: 'GET_ORDER_TODAY' })
-    }
-
     handleEdit = () => {
         this.setState({ isEditable: true })
     }
 
-    mapDishes = () => {
-        // return (
-        //     this.props.order.map(item =>
-        //         <ListItem key={item.id}>
-        //             <OrderItem name={dish.dish_name} id={dish.id} />
-        //         </ListItem>)
-        // )
+    mapOrder = () => {
+        return (
+            this.props.order.map(item =>
+                <ListItem key={item.id}>
+                    <OrderItem ingredientName={item.name} ingredientId={item.ingredient_id} userName={item.username} />
+                </ListItem>)
+        )
     }
 
     render() {
 
         return (
             <div className="mainContainer">
-                {JSON.stringify(this.props.order)}
+                <List>
+                    {this.mapOrder()}
+                </List>
             </div>
         )
     }

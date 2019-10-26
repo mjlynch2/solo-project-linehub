@@ -67,12 +67,11 @@ class MenuAdminItem extends Component {
                         </ListItemSecondaryAction>
                     </div>
                 }
-                {/* <button onClick={() => this.handleDelete(this.props.id)}>Delete</button> */}
             </div>
         )
-            }
-        }
+    }
+}
         
-        export default connect()(MenuAdminItem);
+export default connect()(MenuAdminItem);
         
 // onClick={() => this.handleSave(this.props.id)}>Save</button>

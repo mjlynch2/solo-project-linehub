@@ -6,16 +6,6 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-    const query = `SELECT * FROM "order" JOIN "user" ON "order".user_id = "user".id ORDER BY "date";`;
-    pool.query(query)
-        .then((result) => {
-            res.send(result.rows);
-        }).catch((error) => {
-            console.log('Error selecting stations:', error);
-        })
-});
-
-router.get('/today', (req, res) => {
     const query = `SELECT "order".*, "user".username, "ingredient".name  FROM "order" JOIN "user" ON "order".user_id = "user".id JOIN "ingredient" on "order".ingredient_id = "ingredient".id where "date" = current_date;`;
     pool.query(query)
         .then((result) => {
