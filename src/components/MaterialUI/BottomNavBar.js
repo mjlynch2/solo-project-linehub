@@ -35,6 +35,7 @@ class BottomNavBar extends Component {
                         value={value}
                         onChange={this.handleChange}
                         showLabels
+                        color="secondary"
                         style={styles.flushToBottom}
                     >
                         <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />

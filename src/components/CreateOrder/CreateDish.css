@@ -1,0 +1,32 @@
+.labelDiv {
+    font-size: 10pt;
+    color: #212121;
+    text-align: left;
+}
+
+.createDishDiv {
+    /* margin:5px;
+    height: 100vmax;
+    overflow: scroll; */
+    /* display: inline-flexbox; */
+}
+
+.selectDiv {
+    font-size: 11pt;
+    width: 65vw;
+    overflow: visible;
+    text-align: left;
+    /* height: 100vmax; */
+}
+
+.orderDiv {
+    margin-left: 8px;
+    padding: 4px;
+    margin-right: 4px;
+    height: 50vmax;
+    overflow: scroll;
+}
+
+.header {
+    font-weight: 100;
+}

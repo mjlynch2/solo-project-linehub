@@ -3,14 +3,14 @@ import Creatable from 'react-select/creatable';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
 import './CreateDish.css';
 
 const styles = {
     button: {
         marginTop: 10,
         marginRight: 15,
-        width: 100
+        textAlign: 'center'
     },
 }
 
@@ -18,54 +18,59 @@ class CreateOrder extends Component {
 
     state = {
         orderNotes: '',
+        currentIngredient: '',
         ingredients: [],
         isLoading: false,
         quantity: '',
+        vendor: ''
+    }
 
+    componentDidMount() {
+        this.props.dispatch({ type: 'GET_INGREDIENT' });
     }
 
     createNewOrder = () => {
-        this.props.dispatch({ type: 'ADD_ORDER', name: this.state.dishName, station: this.state.station, payload: this.state.ingredients });
+        this.props.dispatch({ type: 'ADD_ORDER',  payload: {}});
         alert(`New order created!`);
     }
 
     handleChange = (value, actionMeta) => {
-        this.setState({ ingredients: [...this.state.ingredients, value] })
+        this.setState({ ingredients: [...this.state.ingredients, value], currentIngredient: value.label })
     };
+
+    handleInput = (event, keyName) => {
+        this.setState({[keyName]: event.target.value})
+    }
 
     render() {
 
         return (
-            <div className="createDishDiv">
-                <TextField
-                    label="Dish name"
-                    placeholder="e.g. Fusilli with basil pesto"
-                    onChange={(event) => this.handleNameChange(event)}
-                    margin="normal"
-                    fullWidth
-                />
-                <Divider variant="middle" />
-                <div className="labelDiv">What Station?</div>
+            <div className="orderDiv">
+                <div className="labelDiv">Ingredient</div>
                 <div className="selectDiv">
                     <Select
-                        options={this.props.station}
-                        onChange={this.handleStationSelect}
+                        options={this.props.options}
+                        onChange={this.handleChange}
                     />
                 </div>
+                <TextField
+                    label="Amount"
+                    margin="normal"
+                    placeholder="e.g. 5 cases"
+                    onChange={(event) => this.handleInput(event, 'quantity')}
+                    InputLabelProps={{shrink: true}}
+                />
+                <TextField
+                    label="Vendor"
+                    placeholder="e.g. Red Table Meats"
+                    onChange={(event) => this.handleInput(event, 'vendor')}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
                 <br />
-                <Divider variant="middle" />
-                <br />
-                <div className="labelDiv">Add or Create New Ingredients</div>
-                <div className="selectDiv">
-                    <Creatable
-                        options={this.props.options}
-                        onCreateOption={this.handleCreate}
-                        onChange={this.handleChange} />
-                </div>
-                {this.state.ingredients == null ? '' : <ul>{this.state.ingredients.map((item, index) => <li key={index}>{item.value}</li>)}</ul>}
-                <Button variant="outlined" style={styles.button} color="primary" onClick={() => this.props.toggleCreateDish()}>Cancel</Button>
                 <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewDish}>
-                    Save
+                    Add to order
                 </Button>
             </div>
         )

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import { TextField, Button } from '@material-ui/core';
 import './CreateDish.css';
-import MenuAdmin from '../MenuAdmin/MenuAdmin';
 
 const styles = {
     button: {

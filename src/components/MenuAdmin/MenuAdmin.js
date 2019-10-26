@@ -52,24 +52,22 @@ class MenuAdmin extends Component {
     render() {
 
         return (
-            <>
-                <div className="mainContainer">
-                    {this.state.showCreateDish ? 
-                        <CreateDish toggleCreateDish={this.toggleCreateDish} showCreateDish={this.state.showCreateDish}/> 
-                        :
-                        <>
-                            <List>
-                                {this.mapDishes()}
-                            </List>
-                            <br />
-                            <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
-                                <AddIcon />
-                                Add New Dish
-                            </Button>
-                        </>
-                    } 
-                </div>
-            </>
+            <div className="mainContainer">
+                {this.state.showCreateDish ? 
+                    <CreateDish toggleCreateDish={this.toggleCreateDish} showCreateDish={this.state.showCreateDish}/> 
+                    :
+                    <>
+                        <List>
+                            {this.mapDishes()}
+                        </List>
+                        <br />
+                        <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
+                            <AddIcon />
+                            Add New Dish
+                        </Button>
+                    </>
+                } 
+            </div>
         )
     }
 }
