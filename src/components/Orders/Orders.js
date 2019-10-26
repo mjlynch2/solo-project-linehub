@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CreateOrder from '../CreateOrder/CreateOrder';
 import { Button, Stepper, StepLabel, StepContent, Step, Typography } from '@material-ui/core';
+import OrderSummary from './OrderSummary';
 
 function getSteps() {
     return ['Add items', 'Review Order'];
@@ -12,7 +13,7 @@ function getStepContent(step) {
         case 0:
             return <><CreateOrder /></>;
         case 1:
-            return <>This is the order Summary</>;
+            return <><OrderSummary/></>;
         default:
             return 'Unknown Step';
     }
