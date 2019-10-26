@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { ListItemText, ListItemSecondaryAction, IconButton, TextField, Button } from '@material-ui/core';
+import { ListItemText, ListItemSecondaryAction, IconButton, TextField, Button, TableCell } from '@material-ui/core';
 
 const styles = {
     button: {
@@ -43,14 +43,16 @@ class OrderItem extends Component {
 
     render() {
         return (
-            <div>
-                <ListItemText>{this.props.ingredientName}</ListItemText>
-                <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="edit" onClick={() => this.handleEdit(this.props.ingredientName)}>
+            <>
+                <TableCell>{this.props.item.name}</TableCell>
+                <TableCell>{this.props.item.note}</TableCell>
+                <TableCell>{this.props.item.quantity}</TableCell>
+                <TableCell>
+                    <IconButton aria-label="edit" onClick={() => this.handleEdit(this.props.ingredientName)}>
                         <EditIcon />
                     </IconButton>
-                </ListItemSecondaryAction>
-            </div>
+                </TableCell>
+            </>
         )
     }
 }

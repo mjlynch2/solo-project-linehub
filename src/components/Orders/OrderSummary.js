@@ -1,18 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import MenuAdminItem from '../MenuAdminItem/MenuAdminItem';
-import CreateDish from '../CreateDish/CreateDish';
-import Button from '@material-ui/core/Button';
-import AddIcon from '@material-ui/icons/Add';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import OrderItem from './OrderItem';
-
-const styles = {
-    button: {
-        marginBottom: 20,
-    }
-}
+import { Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 
 class OrderSummary extends Component {
 
@@ -27,9 +16,9 @@ class OrderSummary extends Component {
     mapOrder = () => {
         return (
             this.props.order.map(item =>
-                <ListItem key={item.id}>
-                    <OrderItem ingredientName={item.name} ingredientId={item.ingredient_id} userName={item.username} />
-                </ListItem>)
+                <TableRow key={item.id}>
+                    <OrderItem item={item} />
+                </TableRow>)
         )
     }
 
@@ -37,9 +26,19 @@ class OrderSummary extends Component {
 
         return (
             <div className="mainContainer">
-                <List>
-                    {this.mapOrder()}
-                </List>
+                <Table size='small'>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Qty</TableCell>
+                            <TableCell>Source</TableCell>
+                            <TableCell>Edit</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.mapOrder()}
+                    </TableBody>
+                </Table>
             </div>
         )
     }

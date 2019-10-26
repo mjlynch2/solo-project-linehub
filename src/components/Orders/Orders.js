@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CreateOrder from '../CreateOrder/CreateOrder';
 import { Button, Stepper, StepLabel, StepContent, Step, Typography } from '@material-ui/core';
 import OrderSummary from './OrderSummary';
+import { CSVLink, CSVDownload } from "react-csv";
 
 function getSteps() {
     return ['Add items', 'Review Order'];
@@ -28,6 +29,10 @@ const styles = {
         margin: 10
     },
     mainDiv: {
+        textAlign: 'center'
+    },
+    button: {
+        margin: 10
     }
 }
 
@@ -49,10 +54,26 @@ class Orders extends Component {
         }));
     };
 
+    handleSubmit = () => {
+        this.setState(state => ({
+            activeStep: state.activeStep + 1,
+        }));
+        return (
+            // <CSVLink data={this.props.order} target="_blank">
+            //     Download CSV
+            // </CSVLink>
+
+            <CSVDownload data={this.props.order} target="_blank"></CSVDownload>
+        );
+    }
+
     handleReset = () => {
         this.setState({
             activeStep: 0,
         });
+        return (
+            <CSVDownload data={this.props.order} target="_blank" />);
+
     };
 
     componentDidMount(){
@@ -74,9 +95,12 @@ class Orders extends Component {
                 </Stepper>
                 <div>
                     {activeStep === steps.length ? (
-                        <div>
-                            {/* <OrderHistory /> */}
-                            <Button onClick={this.handleReset}>
+                        <div style={styles.mainDiv}>
+                            <CSVDownload data={this.props.order} filename={'linehub_order.csv'}/>
+                            <br/>
+                            <Typography>Order successfully exported!</Typography>
+                            <br/>
+                            <Button variant='outlined' style={styles.button} onClick={this.handleReset}>
                                 Create New Order
                             </Button>
                         </div>
@@ -93,9 +117,9 @@ class Orders extends Component {
                                     <Button
                                         variant="contained"
                                         color="primary"
-                                        onClick={this.handleNext}
+                                        onClick={activeStep === 0 ? this.handleNext : this.handleSubmit}
                                     >
-                                        {activeStep === 1 ? 'Submit Order' : 'Review Order'}
+                                        {activeStep === 0 ? 'Review Order' : 'Submit Order'}
                                     </Button>
                                 </div>
                             </div>
