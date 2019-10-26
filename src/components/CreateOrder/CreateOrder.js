@@ -18,9 +18,10 @@ class CreateOrder extends Component {
         orderNotes: '',
         currentIngredient: {
             name: '',
-            id: 0,
+            ingredient_id: 0,
             quantity: '',
-            vendor: ''
+            note: '',
+            user_id: 0
         },
         ingredients: [],
         isLoading: false,
@@ -30,20 +31,20 @@ class CreateOrder extends Component {
 
     componentDidMount() {
         this.props.dispatch({ type: 'GET_INGREDIENT' });
+        this.setState({currentIngredient: {user_id: this.props.user.id}})
     }
 
     createNewOrder = () => {
-        // this.props.dispatch({ type: 'ADD_ORDER',  payload: {}});
+        this.props.dispatch({ type: 'ADD_ORDER',  payload: this.state.currentIngredient});
         // alert(`New order created!`);
         console.log(this.state.currentIngredient);
-        this.resetInput();
-        
+        this.resetInput();  
     }
 
     handleChange = (value, actionMeta) => {
         this.setState({ currentIngredient: {...this.state.currentIngredient,
             name: value.label,
-            id: value.id }})
+            ingredient_id: value.id }})
     };
 
     handleInput = (event, keyName) => {
@@ -52,12 +53,8 @@ class CreateOrder extends Component {
     }
 
     resetInput = () => {
-        this.setState({currentIngredient: {
-            name: '',
-            id: 0,
-            quantity: '',
-            vendor: ''
-        }})
+        this.quantityField.value = '';
+        this.vendorField.value = '';
     }
 
     render() {
@@ -74,12 +71,12 @@ class CreateOrder extends Component {
                     />
                 </div>
                 <TextField
-                    label="Amount" fullWidth margin="normal" placeholder="e.g. 5 cases" value={this.state.currentIngredient.quantity} InputLabelProps={{ shrink: true }}
+                    id="quantityField" label="Amount" fullWidth margin="normal" placeholder="e.g. 5 cases" InputLabelProps={{ shrink: true }} inputRef={el => this.quantityField = el}
                     onChange={(event) => this.handleInput(event, 'quantity')}
                 />
                 <TextField
-                    label="Vendor" fullWidth margin="normal" placeholder="e.g. Red Table Meats" value={this.state.currentIngredient.vendor} InputLabelProps={{ shrink: true }}
-                    onChange={(event) => this.handleInput(event, 'vendor')}
+                    id="vendorField" label="Vendor" fullWidth margin="normal" placeholder="e.g. Red Table Meats" InputLabelProps={{ shrink: true }} inputRef={el => this.vendorField = el}
+                    onChange={(event) => this.handleInput(event, 'note')}
                 />
                 <br />
                 <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewOrder}>
@@ -94,6 +91,7 @@ const mapStateToProps = reduxState => ({
     ingredient: reduxState.ingredient,
     order: reduxState.order,
     options: reduxState.ingredient.map(item => { return { value: item.name, label: item.name, id: item.id } }),
+    user: reduxState.user
 })
 
 export default connect(mapStateToProps)(CreateOrder);

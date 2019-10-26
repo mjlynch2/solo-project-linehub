@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
     const query = `INSERT INTO "order" ("ingredient_id", "user_id", "quantity", "date", "note") VALUES ($1, $2, $3, to_date($4, 'yyyy-mm-dd'), $5)`
     const d = new Date();
     const date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-    pool.query(query, [req.body.ingredient_id, req.body.user_id, req.body.quantity, date, req.body.date])
+    pool.query(query, [req.body.ingredient_id, req.body.user_id, req.body.quantity, date, req.body.note])
         .then(() => {res.sendStatus(201)})
         .catch((error) => {
             console.log('Error adding to preplist:', error);
