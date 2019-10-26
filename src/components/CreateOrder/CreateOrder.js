@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import Creatable from 'react-select/creatable';
 import Select from 'react-select';
 import { connect } from 'react-redux';
-import Divider from '@material-ui/core/Divider';
 import { TextField, Button, Typography } from '@material-ui/core';
 import './CreateDish.css';
 
@@ -18,7 +16,12 @@ class CreateOrder extends Component {
 
     state = {
         orderNotes: '',
-        currentIngredient: '',
+        currentIngredient: {
+            name: '',
+            id: 0,
+            quantity: '',
+            vendor: ''
+        },
         ingredients: [],
         isLoading: false,
         quantity: '',
@@ -30,16 +33,31 @@ class CreateOrder extends Component {
     }
 
     createNewOrder = () => {
-        this.props.dispatch({ type: 'ADD_ORDER',  payload: {}});
-        alert(`New order created!`);
+        // this.props.dispatch({ type: 'ADD_ORDER',  payload: {}});
+        // alert(`New order created!`);
+        console.log(this.state.currentIngredient);
+        this.resetInput();
+        
     }
 
     handleChange = (value, actionMeta) => {
-        this.setState({ ingredients: [...this.state.ingredients, value], currentIngredient: value.label })
+        this.setState({ currentIngredient: {...this.state.currentIngredient,
+            name: value.label,
+            id: value.id }})
     };
 
     handleInput = (event, keyName) => {
-        this.setState({[keyName]: event.target.value})
+        this.setState({currentIngredient: {...this.state.currentIngredient,
+            [keyName]: event.target.value}})
+    }
+
+    resetInput = () => {
+        this.setState({currentIngredient: {
+            name: '',
+            id: 0,
+            quantity: '',
+            vendor: ''
+        }})
     }
 
     render() {
@@ -49,28 +67,23 @@ class CreateOrder extends Component {
                 <div className="labelDiv">Ingredient</div>
                 <div className="selectDiv">
                     <Select
+                        type='text'
                         options={this.props.options}
                         onChange={this.handleChange}
+                        defaultValue={this.state.currentIngredient.name}
                     />
                 </div>
                 <TextField
-                    label="Amount"
-                    margin="normal"
-                    placeholder="e.g. 5 cases"
+                    label="Amount" fullWidth margin="normal" placeholder="e.g. 5 cases" value={this.state.currentIngredient.quantity} InputLabelProps={{ shrink: true }}
                     onChange={(event) => this.handleInput(event, 'quantity')}
-                    InputLabelProps={{shrink: true}}
                 />
                 <TextField
-                    label="Vendor"
-                    placeholder="e.g. Red Table Meats"
+                    label="Vendor" fullWidth margin="normal" placeholder="e.g. Red Table Meats" value={this.state.currentIngredient.vendor} InputLabelProps={{ shrink: true }}
                     onChange={(event) => this.handleInput(event, 'vendor')}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
                 />
                 <br />
-                <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewDish}>
-                    Add to order
+                <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewOrder}>
+                    Add to Order
                 </Button>
             </div>
         )

@@ -13,10 +13,9 @@
 
 .selectDiv {
     font-size: 11pt;
-    width: 65vw;
+    width: 93vw;
     overflow: visible;
     text-align: left;
-    /* height: 100vmax; */
 }
 
 .orderDiv {
@@ -25,6 +24,7 @@
     margin-right: 4px;
     height: 50vmax;
     overflow: scroll;
+    text-align: center;
 }
 
 .header {

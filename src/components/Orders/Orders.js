@@ -4,7 +4,7 @@ import CreateOrder from '../CreateOrder/CreateOrder';
 import { Button, Stepper, StepLabel, StepContent, Step, Typography } from '@material-ui/core';
 
 function getSteps() {
-    return ['Add items', 'Review Order', 'Submit Order'];
+    return ['Add items', 'Review Order'];
 }
 
 function getStepContent(step) {
@@ -13,10 +13,20 @@ function getStepContent(step) {
             return <><CreateOrder /></>;
         case 1:
             return <>This is the order Summary</>;
-        case 2:
-            return <Button>Submit Order</Button>
         default:
             return 'Unknown Step';
+    }
+}
+
+const styles = {
+    stepperDiv: {
+        width: '90%',
+        display: 'inline-flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: 10
+    },
+    mainDiv: {
     }
 }
 
@@ -53,7 +63,7 @@ class Orders extends Component {
         const { activeStep } = this.state;
 
         return (
-            <div>
+            <div style={styles.mainDiv}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label, index) => (
                         <Step key={label}>
@@ -66,13 +76,13 @@ class Orders extends Component {
                         <div>
                             {/* <OrderHistory /> */}
                             <Button onClick={this.handleReset}>
-                                Submit Order
+                                Create New Order
                             </Button>
                         </div>
-                    ) : (
+                        ) : (
                             <div>
                                 {getStepContent(activeStep)}
-                                <div>
+                                <div style={styles.stepperDiv}>
                                     <Button
                                         disabled={activeStep === 0}
                                         onClick={this.handleBack}
@@ -84,7 +94,7 @@ class Orders extends Component {
                                         color="primary"
                                         onClick={this.handleNext}
                                     >
-                                        {activeStep === steps.length - 1 ? 'Submit Order' : 'Review Order'}
+                                        {activeStep === 1 ? 'Submit Order' : 'Review Order'}
                                     </Button>
                                 </div>
                             </div>
