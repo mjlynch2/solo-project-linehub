@@ -24,6 +24,7 @@ import BottomNavBar from '../MaterialUI/BottomNavBar';
 import PrepList from '../PrepList/PrepList';
 import 'typeface-roboto';
 import Theme from '../../theme/theme';
+import Notes from '../Notes/Notes';
 
 class App extends Component {
   componentDidMount () {
@@ -65,6 +66,10 @@ class App extends Component {
             <ProtectedRoute
               exact path="/admin"
               component={Admin}
+            />
+            <ProtectedRoute
+              exact path="/notes"
+              component={Notes}
             />
             <ProtectedRoute
               exact path="/admin/stations"

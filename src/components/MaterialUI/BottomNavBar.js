@@ -40,7 +40,7 @@ class BottomNavBar extends Component {
                     >
                         <BottomNavigationAction label="Home" component={Link} to="/home" icon={<HomeIcon />} />
                         <BottomNavigationAction label="My dishes" component={Link} to={`/menu/${this.props.userStation.id}`} icon={<RestaurantIcon />} />
-                        <BottomNavigationAction label="Notes" icon={<NotesIcon/>}/>
+                        <BottomNavigationAction label="Notes" component={Link} to={`/notes`} icon={<NotesIcon/>}/>
                     </BottomNavigation>
                 }
             </>

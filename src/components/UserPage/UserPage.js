@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import PrepList from '../PrepList/PrepList';
 import Station from '../StationPage/Station';
 import { Typography } from '@material-ui/core';
 import BackButton from '../MaterialUI/BackButton';
@@ -14,7 +12,7 @@ const UserPage = (props) => (
   <BackButton />
     <div className="mainContainer">
       <Typography variant="h5" >
-        Hey { props.user.username }.
+        Hey {props.user.username.charAt(0).toUpperCase() + props.user.username.slice(1) }.
       </Typography>
       <br/>
       <Station />

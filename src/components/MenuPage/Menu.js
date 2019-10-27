@@ -38,7 +38,7 @@ class Menu extends Component {
             <>
                 <BackButton title='Dishes' />
                 <div className="mainContainer">
-                {this.props.match.params.id === '0' ? <Typography style={styles.subhead}>Full menu</Typography> : <Typography style={styles.subhead}>{this.props.userStation.station} Station</Typography>}
+                {this.props.match.params.id === '0' ? <h3>Full menu</h3> : <h3>{this.props.userStation.station} Station</h3>}
                     <List>
                         {this.props.menu.map(dish => <div key={dish.id}><ListItem button onClick={() => this.handleClick(dish.id)}>
                             <ListItemIcon>
