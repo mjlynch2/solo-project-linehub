@@ -23,7 +23,6 @@ class OrderSummary extends Component {
     }
 
     render() {
-
         return (
             <div className="mainContainer">
                 <Table size='small'>
@@ -49,19 +48,3 @@ const mapStateToProps = reduxState => ({
 })
 
 export default connect(mapStateToProps)(OrderSummary);
-
-// {
-//     this.state.showCreateDish ?
-//     <CreateDish toggleCreateDish={this.toggleCreateDish} showCreateDish={this.state.showCreateDish} />
-//     :
-//     <>
-//         <List>
-//             {this.mapDishes()}
-//         </List>
-//         <br />
-//         <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.handleClick}>
-//             <AddIcon />
-//             Add New Dish
-//                         </Button>
-//     </>
-// }

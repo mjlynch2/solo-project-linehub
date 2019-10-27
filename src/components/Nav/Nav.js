@@ -56,24 +56,25 @@ class Nav extends Component {
             {/* Show the link to the info page and the logout button if the user is logged in */}
             {this.props.user.id && (
               <div>
-              <MenuItem
-                component={Link} to={`/menu/${this.props.userStation.id}`}
-                onClick={this.handleClose}
-              >
-                Dishes
-              </MenuItem>
-              <MenuItem
-                component={Link} to="/admin"
-                onClick={this.handleClose}
-              >
-                Admin
-              </MenuItem>
-              <MenuItem 
-                onClick={() => this.props.dispatch({type: 'LOGOUT' })}
-              >
-                Logout
-              </MenuItem>
-            </div>
+                <MenuItem
+                  component={Link} to={`/menu/${this.props.userStation.id}`}
+                  onClick={this.handleClose}
+                >
+                  Dishes
+                </MenuItem>
+                {this.props.user.employee_id<100 ?  
+                  <MenuItem
+                    component={Link} to="/admin"
+                    onClick={this.handleClose}
+                  >
+                    Admin
+                  </MenuItem> : ''}
+                <MenuItem 
+                  onClick={() => this.props.dispatch({type: 'LOGOUT' })}
+                >
+                  Logout
+                </MenuItem>
+              </div>
             )}
             {/* Always show this link since the about page is not protected */}
             <MenuItem
@@ -83,7 +84,6 @@ class Nav extends Component {
               About
             </MenuItem>
         </Menu>
-
       </div>
     );
   }

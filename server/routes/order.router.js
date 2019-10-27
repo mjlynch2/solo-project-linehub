@@ -1,11 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { isAdmin } = require('../modules/authentication-middleware');
 const router = express.Router();
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', isAdmin, (req, res) => {
     const query = `SELECT "order".*, "user".username, "ingredient".name  FROM "order" JOIN "user" ON "order".user_id = "user".id JOIN "ingredient" on "order".ingredient_id = "ingredient".id where "date" = current_date;`;
     pool.query(query)
         .then((result) => {
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', isAdmin, (req, res) => {
     const query = `INSERT INTO "order" ("ingredient_id", "user_id", "quantity", "date", "note") VALUES ($1, $2, $3, to_date($4, 'yyyy-mm-dd'), $5)`
     const d = new Date();
     const date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;

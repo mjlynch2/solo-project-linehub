@@ -58,13 +58,6 @@ class Orders extends Component {
         this.setState(state => ({
             activeStep: state.activeStep + 1,
         }));
-        return (
-            // <CSVLink data={this.props.order} target="_blank">
-            //     Download CSV
-            // </CSVLink>
-
-            <CSVDownload data={this.props.order} target="_blank"></CSVDownload>
-        );
     }
 
     handleReset = () => {
@@ -135,4 +128,4 @@ const mapStateToProps = reduxState => ({
     user: reduxState.user
 })
 
-export default connect(mapStateToProps)(Orders)
+export default connect(mapStateToProps)(Orders);

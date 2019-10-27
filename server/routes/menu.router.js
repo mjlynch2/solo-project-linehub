@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { isAdmin } = require('../modules/authentication-middleware');
 const router = express.Router();
 
 /**
@@ -27,7 +28,7 @@ router.get('/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', isAdmin, (req, res) => {
     const query = `INSERT INTO "menu" ("dish_name", "station_id") VALUES ($1, $2);`
     pool.query(query, [req.body.dish_name, req.body.station_id])
         .then(() => { res.sendStatus(201); })
@@ -36,7 +37,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.post('/menu-ingredient/:id', (req, res, next) => {
+router.post('/menu-ingredient/:id', isAdmin, (req, res, next) => {
     for (item of req.body) {
         let query = `INSERT INTO "menu_ingredient" ("ingredient_id", "menu_id") VALUES ($1, $2);`;
         pool.query(query, [item.id, req.params.id])
@@ -48,7 +49,7 @@ router.post('/menu-ingredient/:id', (req, res, next) => {
     res.sendStatus( 201 );
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', isAdmin, (req, res) => {
     const query = `UPDATE "menu" SET "dish_name" = $1 WHERE "id" = $2;`;
     pool.query(query, [req.body.dish_name, req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -57,7 +58,7 @@ router.put('/:id', (req, res) => {
         })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAdmin, (req, res) => {
     const query = `DELETE FROM "menu" WHERE "menu".id = $1;`;
     pool.query(query, [req.params.id])
         .then(() => { res.sendStatus(200); })

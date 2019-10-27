@@ -1,4 +1,5 @@
 const express = require('express');
+const { isAdmin } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', isAdmin, (req, res) => {
     const query = `INSERT INTO "station" ("station_name") VALUES ($1);`;
     pool.query(query, [req.body.station_name])
         .then(() => {res.sendStatus(201)})
@@ -27,7 +28,7 @@ router.post('/', (req, res) => {
         })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAdmin, (req, res) => {
     const query = `DELETE FROM "station" WHERE "id" = $1;`;
     pool.query(query, [req.params.id])
         .then(() => { res.sendStatus(200); })
@@ -36,7 +37,7 @@ router.delete('/:id', (req, res) => {
         })
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', isAdmin, (req, res) => {
     const query = `UPDATE "station" SET "station_name" = $1 WHERE "id" = $2;`;
     pool.query(query, [req.body.station_name, req.params.id])
         .then(() => {res.sendStatus(200);})
