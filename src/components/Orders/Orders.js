@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CreateOrder from '../CreateOrder/CreateOrder';
-import { Button, Stepper, StepLabel, StepContent, Step, Typography } from '@material-ui/core';
+import { Button, Stepper, StepLabel, Step, Typography } from '@material-ui/core';
 import OrderSummary from './OrderSummary';
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVDownload } from "react-csv";
 
 function getSteps() {
     return ['Add items', 'Review Order'];

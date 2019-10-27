@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
-import { TextField, Button, Typography } from '@material-ui/core';
+import { TextField, Button, } from '@material-ui/core';
 import './CreateDish.css';
 
 const styles = {

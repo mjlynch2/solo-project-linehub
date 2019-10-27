@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
 import GoIcon from '@material-ui/icons/ArrowForwardIos';
-import { ListItemSecondaryAction, ListItemIcon, Typography } from '@material-ui/core';
+import { ListItemSecondaryAction, ListItemIcon } from '@material-ui/core';
 
 const styles = {
     goIcon: {

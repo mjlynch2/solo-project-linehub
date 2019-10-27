@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Checkbox } from '@material-ui/core';
 
 class PrepListItem extends Component {

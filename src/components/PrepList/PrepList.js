@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PrepListItem from '../PrepListItem/PrepListItem';
 import { withRouter } from 'react-router-dom';
-import { Button, List, ListItem, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Divider, Typography } from '@material-ui/core';
+import { Button, List, ListItem, Divider, Typography } from '@material-ui/core';
 
 const styles = {
     divider: {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Station from '../StationPage/Station';
-import { Typography, List, ListItemText, ListItem } from '@material-ui/core';
+import { List, ListItemText, ListItem } from '@material-ui/core';
 import BackButton from '../MaterialUI/BackButton';
 
 // this could also be written with destructuring parameters as:
