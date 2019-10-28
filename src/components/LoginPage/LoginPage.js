@@ -19,7 +19,7 @@ class LoginPage extends Component {
           password: this.state.password,
         },
       });
-      this.props.dispatch({type: 'RESET_USER_STATION'})
+      this.props.dispatch({type: 'RESET_USER_STATION'});
     } else {
       this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }

@@ -62,6 +62,12 @@ class Nav extends Component {
                 >
                   Dishes
                 </MenuItem>
+                <MenuItem
+                  component={Link} to={`/notes`}
+                  onClick={this.handleClose}
+                >
+                  Notes
+                  </MenuItem>
                 {this.props.user.employee_id<100 ?  
                   <MenuItem
                     component={Link} to="/admin"
@@ -77,12 +83,12 @@ class Nav extends Component {
               </div>
             )}
             {/* Always show this link since the about page is not protected */}
-            <MenuItem
+            {/* <MenuItem
             component={Link} to="/about"
             onClick={this.handleClose}
             >
               About
-            </MenuItem>
+            </MenuItem> */}
         </Menu>
       </div>
     );
