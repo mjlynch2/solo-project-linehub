@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const query = `SELECT * FROM "menu" WHERE "station_id" = $1 ORDER BY "id"`;
-    console.log(req.params)
     pool.query(query, [req.params.id])
         .then((result) => {
             res.send(result.rows);
