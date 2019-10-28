@@ -3,7 +3,7 @@ import Creatable from 'react-select/creatable';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, List, ListItem, Typography } from '@material-ui/core';
 import './CreateDish.css';
 
 const styles = {
@@ -73,9 +73,9 @@ class CreateDish extends Component {
                     placeholder="e.g. Fusilli with basil pesto"
                     onChange={(event) => this.handleNameChange(event)}
                     margin="normal"
+                    variant="outlined"
                     fullWidth
                 />
-                <Divider variant="middle"/>
                 <div className="labelDiv">What Station?</div>
                 <div className="selectDiv">
                 <Select 
@@ -84,8 +84,6 @@ class CreateDish extends Component {
                 />
                 </div>
                 <br/>
-                <Divider variant="middle" />
-                <br/>
                 <div className="labelDiv">Add or Create New Ingredients</div>
                 <div className="selectDiv">
                     <Creatable
@@ -93,7 +91,18 @@ class CreateDish extends Component {
                         onCreateOption={this.handleCreate}
                         onChange={this.handleChange} />
                 </div>
-                {this.state.ingredients == null ? '' : <ul>{this.state.ingredients.map((item, index) => <li key={index}>{item.value}</li>)}</ul>}
+                {this.state.ingredients == null ? '' : 
+                    <div className="previewDish">
+                        <br/>
+                        <Typography >{this.state.dishName}</Typography>
+                        <Typography variant="caption">{this.state.station.value}</Typography>
+                        <List dense>
+                            {this.state.ingredients.map((item, index) => 
+                                <ListItem key={index}>
+                                    {item.value}
+                                </ListItem>)}
+                        </List>
+                    </div>}
                 <Button variant="outlined" style={styles.button} color="primary" onClick={() => this.props.toggleCreateDish()}>Cancel</Button>
                 <Button style={styles.button} color='primary' variant="contained" aria-label="add" onClick={this.createNewDish}>
                     Save

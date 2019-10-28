@@ -16,5 +16,12 @@
     width: 90%;
     overflow: visible;
     text-align: left;
+    margin: 5px;
     /* height: 100vmax; */
+}
+
+.previewDish {
+    text-align: left;
+    margin: 10px;
+    
 }
