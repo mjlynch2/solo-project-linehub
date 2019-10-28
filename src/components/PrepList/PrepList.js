@@ -28,8 +28,8 @@ class PrepList extends Component {
     }
 
     handleClick = () => {
-        if(this.props.userStation.id != 0){
-            this.props.history.push(`/menu/${this.props.userStation.id}`)
+        if(this.props.userStation.stationId != 0){
+            this.props.history.push(`/menu/${this.props.userStation.stationId}`)
         } else {
             alert('Please set your station first')
         }

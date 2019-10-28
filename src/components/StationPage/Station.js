@@ -15,27 +15,31 @@ class Station extends Component {
 
     handleChange = (event) => {
         this.setState({stationName: event.target.value})        
-        this.props.dispatch({ type: 'SET_STATION_FOR_USER', id: event.target.value.id, name: event.target.value.station_name })
+        this.props.dispatch({ type: 'SET_STATION_FOR_USER', userId: this.props.user.id, stationId: event.target.value.id, name: event.target.value.station_name })
     }
 
     render(){
+        let isStationAssigned = false;
+        if(this.props.userStation.userId === this.props.user.id && this.props.userStation.stationId > 0){
+            isStationAssigned = true;
+        }
         return(
             <div>
-                {this.props.userStation.id === 0 ? 
+                {isStationAssigned ?
                     <div>
-                        What station are you working tonight?
-                        <br/>
-                        <StationSelect
-                            stationName={this.state.stationName} 
-                            station={this.props.station} 
-                            handleChange={this.handleChange}
-                        />
+                        You're working {this.props.userStation.station} tonight.
+                        <br />
+                        <PrepList />
                     </div>
                     :
                     <div>
-                        You're working {this.props.userStation.station} tonight. 
-                        <br/>
-                        <PrepList/>
+                        What station are you working tonight?
+                        <br />
+                        <StationSelect
+                            stationName={this.state.stationName}
+                            station={this.props.station}
+                            handleChange={this.handleChange}
+                        />
                     </div>}
                 <br/>
             </div>

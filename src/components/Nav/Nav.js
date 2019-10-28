@@ -57,7 +57,7 @@ class Nav extends Component {
             {this.props.user.id && (
               <div>
                 <MenuItem
-                  component={Link} to={`/menu/${this.props.userStation.id}`}
+                  component={Link} to={`/menu/${this.props.userStation.stationId}`}
                   onClick={this.handleClose}
                 >
                   Dishes
