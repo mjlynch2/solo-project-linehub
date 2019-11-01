@@ -61,7 +61,7 @@ class CreateOrder extends Component {
 
         return (
             <div className="orderDiv">
-                <div className="labelDiv">Ingredient</div>
+                <div className="labelDiv" onClick={this.secretClick}>Ingredient</div>
                 <div className="selectDiv">
                     <Select
                         type='text'

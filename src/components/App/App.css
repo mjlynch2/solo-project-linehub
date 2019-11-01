@@ -6,6 +6,18 @@ body {
     /* background-color: #fafafa; */
 }
 
+.loginHeader {
+    width: 100%;
+    background-color: #292929;
+    text-align: center;
+    margin: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    color: white;
+}
+
 .mainContainer {
     margin-top: 10px;
     display: block;
@@ -25,7 +37,7 @@ input {
 
 .loginDiv {
     text-align: center;
-    height: 75vmax;
+    height: 50vmax;
     padding: 10px;
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextField, Button } from '@material-ui/core';
+import { TextField, Button, Typography } from '@material-ui/core';
 
 class LoginPage extends Component {
   state = {
@@ -33,6 +33,12 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <>
+      <div className="loginHeader">
+        <Typography variant="h4">
+          LineHub
+        </Typography>
+      </div>
       <div className="loginDiv">
         {this.props.errors.loginMessage && (
           <h2
@@ -43,7 +49,6 @@ class LoginPage extends Component {
           </h2>
         )}
         <form onSubmit={this.login}>
-          <h1>Login</h1>
           <div>
             <TextField 
               label="Username:" 
@@ -94,6 +99,7 @@ class LoginPage extends Component {
           </p>
         </div>
       </div>
+      </>
     );
   }
 }
